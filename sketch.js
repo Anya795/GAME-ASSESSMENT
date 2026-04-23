@@ -1,8 +1,7 @@
 let libaryImg;
 let libaryBackgroundImg;
 let spriteImg;
-let xDirection = 1;
-let yDirection = 0;
+
 
 function setup() {
   createCanvas(400, 400);
@@ -13,7 +12,8 @@ function setup() {
 }
 
 function draw() {
- keyPressed(spriteImg);
+  let spriteImg = new Character();
+  spriteImg.move
 }
 
  function preload (){
@@ -21,40 +21,60 @@ function draw() {
   libaryBackgroundImg = loadImage('/assets/Background.png');
   spriteImg = loadImage('assets/prototype_character.png');
  }
+//  class segment{
+//   #x;
+//   #y;
+//   constructor(){
+//     this.#x = x;
+//     this.#y = y;
+//   }
+//  }
+
+  class Character{
+    #xDirection = 1;
+    #yDirection = 0;
+    constructor(){
+
+ }
+
+  move(){
+    this.#xDirection;
+    this.#yDirection;
+  }
+
+
+ faceLeft() {
+  this.setX(this.getX())
+ }
+
+ faceRight() {
+ 
+}
+ 
+
+ faceUp() {
+  
+}
+ 
+
+ faceDown() {
+  
+ }
+}
 
  function KeyPressed(){
 if (keyCode === LEFT_ARROW) {
-  spriteImg.faceLeft();
-  // xDirection = -1;
-  // yDirection = 0;
+  spriteImg.moveLeft();
 }
 else if (keyCode === RIGHT_ARROW_ARROW){
-  spriteImg.faceRight();
-  // xDirection = 1;
-  // yDirection = 0;
+  spriteImg.moveRight();
 }
 else if (keyCode === UP_ARROW){
-  spriteImg.faceUp();
-  // xDirection = 0;
-  // yDirection = -1;
+  spriteImg.moveUp();
 }
 else if (keyCode === UP_ARROW){
-  spritefaceDown();
-  // xDirection = 0;
-  // yDirection = 1;
+  spriteImg.moveDown();
  }
  }
 
-//  faceLeft(){
-  // this.xDirection = -1;
-  // this.yDirection = 0;
-//  }
 
-//  class spriteImg {
-//   #xDirection = 1;
-//   #yDirection = 0;
-//   #segment [];
-//   constructor(){
-//     this.#segment.push(new this.#segment());
-//   }
-//  }
