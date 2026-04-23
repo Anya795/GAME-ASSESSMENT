@@ -45,6 +45,11 @@ else if (keyCode === UP_ARROW){
  }
  }
 
+//  faceLeft(){
+  // this.xDirection = -1;
+  // this.yDirection = 0;
+//  }
+
 //  class spriteImg {
 //   #xDirection = 1;
 //   #yDirection = 0;
