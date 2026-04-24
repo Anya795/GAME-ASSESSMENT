@@ -18,7 +18,7 @@ function setup() {
 function draw() {
   player.update();
   spriteImg.show();
-  spriteImg.move();
+  player.move();
   background (220);
 }
 
@@ -74,37 +74,37 @@ setSpeed(newSpeed) {
 
 
  moveLeft() {
-  this.setX(this.getX() - this.speed);
+  this.x -= this.speed;
  }
 
  moveRight() {
- this.setX(this.getX() + this.speed);
+ this.x += this.speed;
 }
  
 
  moveUp() {
-this.setY(this.getY() - this.speed);
+this.y -= this.speed;
 }
  
 
  moveDown() {
-this.setY(this.getY() + this.speed);
+this.y += this.speed;
  }
 
 }
 
 
 function KeyPressed(){
-  if (keyCode === LEFT_ARROW) {
+  if (keyIsDown(LEFT_ARROW)) {
     spriteImg.moveLeft();
   }
-  else if (keyCode === RIGHT_ARROW){
+  else if (keyIsDown(RIGHT_ARROW)){
     spriteImg.moveRight();
   }
-  else if (keyCode === UP_ARROW){
+  else if (keyIsDown(UP_ARROW)){
     spriteImg.moveUp();
   }
-  else if (keyCode === DOWN_ARROW){
+  else if (keyIsDown(DOWN_ARROW)){
     spriteImg.moveDown();
   }
 }
