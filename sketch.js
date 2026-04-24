@@ -1,80 +1,114 @@
 let libaryImg;
 let libaryBackgroundImg;
 let spriteImg;
+let player;
 
 
 function setup() {
-  createCanvas(400, 400);
-  image(libaryImg, 0,0);
-  image(libaryBackgroundImg, 0,0);
+  //image(libaryBackgroundImg, 0,0);
+  createCanvas(800, 600);
+  image(libaryBackgroundImg, 0, 0, 800, 600);
+  image(libaryImg, 50, 50, 150, 150);
   image(spriteImg, 0,0, 30, 40);
+  image(tilesetImg, 400, 300, 50, 60); 
+  player = new Character();
 
 }
 
 function draw() {
-  let spriteImg = new Character();
-  spriteImg.move
+  player.update();
+  spriteImg.show();
+  spriteImg.move();
+  background (220);
 }
 
- function preload (){
+function preload (){
   libaryImg = loadImage('/assets/Demo.png');
   libaryBackgroundImg = loadImage('/assets/Background.png');
-  spriteImg = loadImage('assets/prototype_character.png');
+  spriteImg = loadImage('/assets/prototype_character.png');
+  tilesetImg = loadImage('/assets/Tileset.png');
  }
-//  class segment{
-//   #x;
-//   #y;
-//   constructor(){
-//     this.#x = x;
-//     this.#y = y;
-//   }
-//  }
 
-  class Character{
-    #xDirection = 1;
-    #yDirection = 0;
+class Character{
+  xDirection = 1;
+  yDirection = 0;
+  speed = 2;
     constructor(){
 
  }
 
   move(){
-    this.#xDirection;
-    this.#yDirection;
+    this.xDirection;
+    this.yDirection;
+    this.speed;
+  }
+
+  update(){
+    this.x += this.xDirection * this.speed;
+    this.y += this.yDirection * this.speed;
+    if (keyCode === LEFT_ARROW) {
+    spriteImg.moveLeft();
+  }
+  else if (keyCode === RIGHT_ARROW){
+    spriteImg.moveRight();
+  }
+  else if (keyCode === UP_ARROW){
+    spriteImg.moveUp();
+  }
+  else if (keyCode === DOWN_ARROW){
+    spriteImg.moveDown();
+  }
+}
+
+  show(){
+    image(spriteImg, this.x, this.y, 50, 80);
+  }
+  getSpeed() {
+    return this.speed;
   }
 
 
- faceLeft() {
-  this.setX(this.getX())
+setSpeed(newSpeed) {
+  this.speed = newSpeed;
+}
+
+
+ moveLeft() {
+  this.setX(this.getX() - this.speed);
  }
 
- faceRight() {
+ moveRight() {
+ this.setX(this.getX() + this.speed);
+}
  
+
+ moveUp() {
+this.setY(this.getY() - this.speed);
 }
  
 
- faceUp() {
-  
-}
- 
-
- faceDown() {
-  
+ moveDown() {
+this.setY(this.getY() + this.speed);
  }
+
 }
 
- function KeyPressed(){
-if (keyCode === LEFT_ARROW) {
-  spriteImg.moveLeft();
+
+function KeyPressed(){
+  if (keyCode === LEFT_ARROW) {
+    spriteImg.moveLeft();
+  }
+  else if (keyCode === RIGHT_ARROW){
+    spriteImg.moveRight();
+  }
+  else if (keyCode === UP_ARROW){
+    spriteImg.moveUp();
+  }
+  else if (keyCode === DOWN_ARROW){
+    spriteImg.moveDown();
+  }
 }
-else if (keyCode === RIGHT_ARROW_ARROW){
-  spriteImg.moveRight();
-}
-else if (keyCode === UP_ARROW){
-  spriteImg.moveUp();
-}
-else if (keyCode === UP_ARROW){
-  spriteImg.moveDown();
- }
- }
+
+
 
 
