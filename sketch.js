@@ -7,19 +7,23 @@ let player;
 function setup() {
   //image(libaryBackgroundImg, 0,0);
   createCanvas(800, 600);
-  image(libaryBackgroundImg, 0, 0, 800, 600);
-  image(libaryImg, 50, 50, 150, 150);
-  image(spriteImg, 0,0, 30, 40);
-  image(tilesetImg, 400, 300, 50, 60); 
   player = new Character();
 
 }
 
 function draw() {
-  player.update();
-  spriteImg.show();
-  player.move();
   background (220);
+  image(libaryBackgroundImg, 0, 0, 800, 600);
+  image(libaryImg, 50, 50, 150, 150);
+  image(spriteImg, 0,0, 30, 40);
+  image(tilesetImg, 400, 300, 50, 60); 
+  player.update();
+  player.show();
+  player.move();
+  // player.moveLeft();
+  // player.moveRight();
+  // player.moveUp();
+  // player.moveDown();
 }
 
 function preload (){
@@ -30,33 +34,35 @@ function preload (){
  }
 
 class Character{
-  xDirection = 1;
-  yDirection = 0;
+  xDirection;
+  yDirection;
   speed = 2;
     constructor(){
+      this.x = 100;
+      this.y = 100;
+      this.speed = 2;
 
  }
 
   move(){
-    this.xDirection;
-    this.yDirection;
-    this.speed;
   }
 
   update(){
-    this.x += this.xDirection * this.speed;
-    this.y += this.yDirection * this.speed;
-    if (keyCode === LEFT_ARROW) {
-    spriteImg.moveLeft();
+    if (keyIsDown (LEFT_ARROW)) {
+      this.x -= this.speed;
+    this.moveLeft(this.x);
   }
-  else if (keyCode === RIGHT_ARROW){
-    spriteImg.moveRight();
+  else if (keyIsDown(RIGHT_ARROW)){
+    this.x += this.speed;
+    this.moveRight(this.x);
   }
-  else if (keyCode === UP_ARROW){
-    spriteImg.moveUp();
+  else if (keyIsDown(UP_ARROW)){
+    this.y -= this.speed;
+    this.moveUp(this.y);
   }
-  else if (keyCode === DOWN_ARROW){
-    spriteImg.moveDown();
+  else if (keyIsDown(DOWN_ARROW)){
+    this.y += this.speed;
+    this.moveDown(this.y);
   }
 }
 
@@ -94,20 +100,6 @@ this.y += this.speed;
 }
 
 
-function KeyPressed(){
-  if (keyIsDown(LEFT_ARROW)) {
-    spriteImg.moveLeft();
-  }
-  else if (keyIsDown(RIGHT_ARROW)){
-    spriteImg.moveRight();
-  }
-  else if (keyIsDown(UP_ARROW)){
-    spriteImg.moveUp();
-  }
-  else if (keyIsDown(DOWN_ARROW)){
-    spriteImg.moveDown();
-  }
-}
 
 
 
