@@ -2,6 +2,7 @@ let libaryImg;
 let libaryBackgroundImg;
 let spriteImg;
 let player;
+let bookImg;
 
 
 function setup() {
@@ -15,8 +16,9 @@ function draw() {
   background (220);
   image(libaryBackgroundImg, 0, 0, 800, 600);
   image(libaryImg, 50, 50, 150, 150);
-  image(spriteImg, 0,0, 30, 40);
+  // image(spriteImg, 0,0, 30, 40);
   image(tilesetImg, 400, 300, 50, 60); 
+  image(bookImg, 90,20, 30, 40);
   player.update();
   player.show();
   player.move();
@@ -31,6 +33,7 @@ function preload (){
   libaryBackgroundImg = loadImage('/assets/Background.png');
   spriteImg = loadImage('/assets/prototype_character.png');
   tilesetImg = loadImage('/assets/Tileset.png');
+  bookImg = loadImage('/assets/book2.png');
  }
 
 class Character{
