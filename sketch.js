@@ -1,12 +1,18 @@
 //startbutton
 let modeButton;
 let startGame;
+// const startGame = "modeButton"
 //movement
 let libaryImg;
 let libaryBackgroundImg;
 let spriteImg;
 let player;
 let bookImg;
+
+// switch(startGame){
+//   case "modeButton":
+//     console.log("modeButton");
+// }
 
 function setup() {
   createCanvas(800, 600);
@@ -19,13 +25,8 @@ function setup() {
   modeButton.mousePressed(startGame);
   player = new Character();
 }
-  //this might be causing no canvas to show
+  // this might be causing no canvas to show
   // function startGame(){
-  //   if (mousePressed){
-  //   background(libaryBackgroundImg); }
-  //   else{
-  //     background(0);
-  //   }
   //   modeButton.hide(); //hides button when clicked
   // }
 
@@ -57,13 +58,12 @@ class Character{
       this.x = 100;
       this.y = 100;
       this.speed = 2;
-
- }
+}
 
   move(){
   }
 
-//need this
+//need this - movement
   update(){
     if (keyIsDown (LEFT_ARROW)) {
       this.x -= this.speed;
@@ -103,8 +103,11 @@ this.y -= this.speed;
 moveDown() {
 this.y += this.speed;
  }
-
 }
+
+
+
+
 
 
 
