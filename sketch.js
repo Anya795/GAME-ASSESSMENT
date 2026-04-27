@@ -16,13 +16,6 @@ let bookImg;
 
 function setup() {
   createCanvas(800, 600);
-  //start button
-  modeButton = createButton("Start!")
-  const mainContainer = select("main");
-  modeButton.parent(mainContainer);
-  modeButton.position(300,500);
-  modeButton.size(130,40);
-  modeButton.mousePressed(startGame);
   player = new Character();
 }
   // this might be causing no canvas to show
