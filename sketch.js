@@ -1,33 +1,46 @@
+//startbutton
+let modeButton;
+let startGame;
+//movement
 let libaryImg;
 let libaryBackgroundImg;
 let spriteImg;
 let player;
 let bookImg;
 
-
 function setup() {
-  //image(libaryBackgroundImg, 0,0);
   createCanvas(800, 600);
+  //start button
+  modeButton = createButton("Start!")
+  const mainContainer = select("main");
+  modeButton.parent(mainContainer);
+  modeButton.position(300,500);
+  modeButton.size(130,40);
+  modeButton.mousePressed(startGame);
   player = new Character();
-
 }
+  //this might be causing no canvas to show
+  // function startGame(){
+  //   if (mousePressed){
+  //   background(libaryBackgroundImg); }
+  //   else{
+  //     background(0);
+  //   }
+  //   modeButton.hide(); //hides button when clicked
+  // }
 
 function draw() {
-  background (220);
+  background
   image(libaryBackgroundImg, 0, 0, 800, 600);
   image(libaryImg, 50, 50, 150, 150);
-  // image(spriteImg, 0,0, 30, 40);
   image(tilesetImg, 400, 300, 50, 60); 
-  image(bookImg, 90,20, 30, 40);
+  image(bookImg, 400,350, 30, 40);
   player.update();
   player.show();
   player.move();
-  // player.moveLeft();
-  // player.moveRight();
-  // player.moveUp();
-  // player.moveDown();
 }
 
+//images
 function preload (){
   libaryImg = loadImage('/assets/Demo.png');
   libaryBackgroundImg = loadImage('/assets/Background.png');
@@ -50,6 +63,7 @@ class Character{
   move(){
   }
 
+//need this
   update(){
     if (keyIsDown (LEFT_ARROW)) {
       this.x -= this.speed;
@@ -72,35 +86,27 @@ class Character{
   show(){
     image(spriteImg, this.x, this.y, 50, 80);
   }
-  getSpeed() {
-    return this.speed;
-  }
 
-
-setSpeed(newSpeed) {
-  this.speed = newSpeed;
-}
-
-
+//need all this
  moveLeft() {
   this.x -= this.speed;
  }
-
+ 
  moveRight() {
  this.x += this.speed;
 }
- 
 
- moveUp() {
+moveUp() {
 this.y -= this.speed;
 }
- 
 
- moveDown() {
+moveDown() {
 this.y += this.speed;
  }
 
 }
+
+
 
 
 
