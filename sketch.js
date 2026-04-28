@@ -1,3 +1,6 @@
+let levelState = 0
+let levels = [];
+
 //startbutton
 let modeButton;
 let startGame;
@@ -17,6 +20,17 @@ let bookImg;
 function setup() {
   createCanvas(800, 600);
   player = new Character();
+  modeButton = createButton("Start!")
+    const mainContainer = select("main");
+    modeButton.parent(mainContainer);
+    modeButton.position(300,500);
+    modeButton.size(130,40);
+    modeButton.mousePressed(startGame);
+    //levels
+    levelState = 0;
+
+    levels.push(new LevelOne);
+    levels.push(new LevelTwo)
 }
   // this might be causing no canvas to show
   // function startGame(){
@@ -24,7 +38,16 @@ function setup() {
   // }
 
 function draw() {
-  background
+  background(0);
+  //switch statement (levels)
+  switch(levelState){
+    case 0:
+      levels[0].draw();
+      break;
+      case 1:
+        levels[1].draw();
+  }
+  //IMAGES
   image(libaryBackgroundImg, 0, 0, 800, 600);
   image(libaryImg, 50, 50, 150, 150);
   image(tilesetImg, 400, 300, 50, 60); 
@@ -32,6 +55,15 @@ function draw() {
   player.update();
   player.show();
   player.move();
+}
+
+//levels
+function keyPressed(){
+  if(key === '1'){
+    levelState = 0;
+  } else if(key === '2'){
+    levelState = 1;
+  }
 }
 
 //images
@@ -56,7 +88,6 @@ class Character{
   move(){
   }
 
-//need this - movement
   update(){
     if (keyIsDown (LEFT_ARROW)) {
       this.x -= this.speed;
@@ -77,10 +108,10 @@ class Character{
 }
 
   show(){
-    image(spriteImg, this.x, this.y, 50, 80);
+    image(spriteImg, this.x, this.y, 30, 40); //number = width and height of image
   }
 
-//need all this
+
  moveLeft() {
   this.x -= this.speed;
  }
@@ -100,6 +131,12 @@ this.y += this.speed;
 
 
 
+//start scene
+function drawLevel1(){
+    textAlign(CENTER);
+    textSize(30);
+    text("Level One!", 400, 300);
+}
 
 
 
