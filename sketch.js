@@ -1,5 +1,5 @@
-let levelState = 0
-let levels = [];
+// let levelState = 0
+// let levels = [];
 
 //startbutton
 let modeButton;
@@ -12,25 +12,20 @@ let spriteImg;
 let player;
 let bookImg;
 
-// switch(startGame){
-//   case "modeButton":
-//     console.log("modeButton");
-// }
-
 function setup() {
   createCanvas(800, 600);
   player = new Character();
   modeButton = createButton("Start!")
-    const mainContainer = select("main");
-    modeButton.parent(mainContainer);
-    modeButton.position(300,500);
-    modeButton.size(130,40);
-    modeButton.mousePressed(startGame);
-    //levels
-    levelState = 0;
+  const mainContainer = select("main");
+  modeButton.parent(mainContainer);
+  modeButton.position(300,500);
+  modeButton.size(130,40);
+  modeButton.mousePressed(startGame);
+  //levels
+  // levelState = 0;
 
-    levels.push(new LevelOne);
-    levels.push(new LevelTwo)
+  //   levels.push(new LevelOne);
+  //   levels.push(new LevelTwo)
 }
   // this might be causing no canvas to show
   // function startGame(){
@@ -39,14 +34,6 @@ function setup() {
 
 function draw() {
   background(0);
-  //switch statement (levels)
-  switch(levelState){
-    case 0:
-      levels[0].draw();
-      break;
-      case 1:
-        levels[1].draw();
-  }
   //IMAGES
   image(libaryBackgroundImg, 0, 0, 800, 600);
   image(libaryImg, 50, 50, 150, 150);
@@ -55,15 +42,23 @@ function draw() {
   player.update();
   player.show();
   player.move();
-}
 
+  //switch statement (levels)
+  // switch(levelState){
+  //   case 0:
+  //     // levels[0].draw();
+  //     break;
+  //     case 1:
+  //       levels[1].draw();
+//   }
+// }
 //levels
-function keyPressed(){
-  if(key === '1'){
-    levelState = 0;
-  } else if(key === '2'){
-    levelState = 1;
-  }
+// function keyPressed(){
+//   if(key === '1'){
+//     levelState = 0;
+//   } else if(key === '2'){
+//     levelState = 1;
+//   }
 }
 
 //images
@@ -129,14 +124,24 @@ this.y += this.speed;
  }
 }
 
+// class LevelOne{
+//     levelName;
+//     constructor(){
+//         this.levelName = "Level One"
+//     }
+
+//     draw(){
+//     //start button 
+//     modeButton = createButton("Start!")
+//     const mainContainer = select("main");
+//     modeButton.parent(mainContainer);
+//     modeButton.position(300,500);
+//     modeButton.size(130,40);
+//     modeButton.mousePressed(startGame);
+//     }
+// }
 
 
-//start scene
-function drawLevel1(){
-    textAlign(CENTER);
-    textSize(30);
-    text("Level One!", 400, 300);
-}
 
 
 
