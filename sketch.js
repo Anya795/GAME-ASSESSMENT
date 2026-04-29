@@ -1,5 +1,5 @@
-// let levelState = 0
-// let levels = [];
+let levelState = 0
+let levels = [];
 
 //startbutton
 let modeButton;
@@ -22,10 +22,9 @@ function setup() {
   modeButton.size(130,40);
   modeButton.mousePressed(startGame);
   //levels
-  // levelState = 0;
-
-  //   levels.push(new LevelOne);
-  //   levels.push(new LevelTwo)
+  levelState = 0;
+    // levels.push(new LevelOne); //THE REASON FOR THE CANVAS GOING BLANK
+    // levels.push(new LevelTwo); //THE REASON FOR THE CANVAS GOING BLANK
 }
   // this might be causing no canvas to show
   // function startGame(){
@@ -43,22 +42,22 @@ function draw() {
   player.show();
   player.move();
 
-  //switch statement (levels)
-  // switch(levelState){
-  //   case 0:
-  //     // levels[0].draw();
-  //     break;
-  //     case 1:
-  //       levels[1].draw();
-//   }
-// }
-//levels
-// function keyPressed(){
-//   if(key === '1'){
-//     levelState = 0;
-//   } else if(key === '2'){
-//     levelState = 1;
-//   }
+  // switch statement (levels)
+  switch(levelState){
+    case 0:
+      // levels[0].draw();
+      break;
+      case 1:
+        levels[1].draw();
+  }
+}
+levels
+function keyPressed(){
+  if(key === '1'){
+    levelState = 0;
+  } else if(key === '2'){
+    levelState = 1;
+  }
 }
 
 //images
@@ -123,23 +122,6 @@ moveDown() {
 this.y += this.speed;
  }
 }
-
-// class LevelOne{
-//     levelName;
-//     constructor(){
-//         this.levelName = "Level One"
-//     }
-
-//     draw(){
-//     //start button 
-//     modeButton = createButton("Start!")
-//     const mainContainer = select("main");
-//     modeButton.parent(mainContainer);
-//     modeButton.position(300,500);
-//     modeButton.size(130,40);
-//     modeButton.mousePressed(startGame);
-//     }
-// }
 
 
 
