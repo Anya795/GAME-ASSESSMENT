@@ -1,5 +1,5 @@
-let levelState = 0
-let levels = [];
+// let levelState = 0
+// let levels = [];
 
 //startbutton
 let modeButton;
@@ -11,6 +11,7 @@ let libaryBackgroundImg;
 let spriteImg;
 let player;
 let bookImg;
+let witchImg;
 
 function setup() {
   createCanvas(800, 600);
@@ -22,9 +23,9 @@ function setup() {
   modeButton.size(130,40);
   modeButton.mousePressed(startGame);
   //levels
-  levelState = 0;
-    // levels.push(new LevelOne); //THE REASON FOR THE CANVAS GOING BLANK
-    // levels.push(new LevelTwo); //THE REASON FOR THE CANVAS GOING BLANK
+  // levelState = 0;
+  //   levels.push(new LevelOne);
+  //   levels.push(new LevelTwo);
 }
   // this might be causing no canvas to show
   // function startGame(){
@@ -38,20 +39,24 @@ function draw() {
   image(libaryImg, 50, 50, 150, 150);
   image(tilesetImg, 400, 300, 50, 60); 
   image(bookImg, 400,350, 30, 40);
+  image(witchImg, 600, 375 , 120, 100);
   player.update();
   player.show();
   player.move();
 
   // switch statement (levels)
-  switch(levelState){
-    case 0:
-      // levels[0].draw();
-      break;
-      case 1:
-        levels[1].draw();
-  }
+  // switch(levelState){
+  //   case 0:
+  //     levels[0].draw();
+  //     break;
+  //     case 1:
+  //       levels[1].draw();
+  //     break;
+  //     case 2:
+  //       levels[2].draw();
+  // }
 }
-levels
+//levels
 function keyPressed(){
   if(key === '1'){
     levelState = 0;
@@ -63,11 +68,15 @@ function keyPressed(){
 //images
 function preload (){
   libaryImg = loadImage('/assets/Demo.png');
-  libaryBackgroundImg = loadImage('/assets/Background.png');
-  spriteImg = loadImage('/assets/prototype_character.png');
-  tilesetImg = loadImage('/assets/Tileset.png');
-  bookImg = loadImage('/assets/book2.png');
- }
+  libaryBackgroundImg = loadImage('/assets/Background.png'); //Asset licence: Creative Commons Attribution_ShareAlike v4.0 International. Author: Manu Art. Link: https://manu-art.itch.io/library-asset-pack
+  spriteImg = loadImage('/assets/prototype_character.png'); //Asset licence: You can use these assets in commercial and non-commercial projects. You can edit these assets. You can't redistribute or resell these assets, even if they have been modified. 
+//Author: Snoblin
+//Link:https://snoblin.itch.io/pixel-rpg-free-npc 
+  tilesetImg = loadImage('/assets/Tileset.png'); //Asset licence: Creative Commons Attribution_ShareAlike v4.0 International. Author: Manu Art. Link: https://manu-art.itch.io/library-asset-pack
+  bookImg = loadImage('/assets/book2.png'); //Asset Licence: nothing. Author: Sleeping Unicorn Studio. Link: https://sleepingunicornstudios.itch.io/book
+  witchImg = loadImage('/assets/witch.png');
+}
+
 
 class Character{
   xDirection;
