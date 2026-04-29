@@ -1,6 +1,8 @@
 // let levelState = 0
 // let levels = [];
 
+//dialogue
+let dialogueBox;
 //startbutton
 let modeButton;
 let startGame;
@@ -22,6 +24,14 @@ function setup() {
   modeButton.position(300,500);
   modeButton.size(130,40);
   modeButton.mousePressed(startGame);
+
+  //dialogue
+  dialogueBox = new DialogueBox([
+    "Hey you! Click me! The little witch with purple hair." ,
+    "Collect items to move onto the next level!" ,
+    "Each level means you collect more items as you go along"
+  ]);
+
   //levels
   // levelState = 0;
   //   levels.push(new LevelOne);
@@ -44,6 +54,10 @@ function draw() {
   player.show();
   player.move();
 
+  //dialogue
+  if(dialogueBox.outOfLines === false)
+    dialogueBox.draw();
+
   // switch statement (levels)
   // switch(levelState){
   //   case 0:
@@ -56,6 +70,13 @@ function draw() {
   //       levels[2].draw();
   // }
 }
+
+//dialogue
+function mousePressed(){
+  dialogueBox.nextLine();
+}
+
+
 //levels
 function keyPressed(){
   if(key === '1'){
