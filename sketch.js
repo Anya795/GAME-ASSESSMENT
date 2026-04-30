@@ -1,5 +1,5 @@
-// let levelState = 0
-// let levels = [];
+let levelState = 0
+let levels = [];
 
 //dialogue
 let dialogueBox;
@@ -33,14 +33,11 @@ function setup() {
   ]);
 
   //levels
-  // levelState = 0;
-  //   levels.push(new LevelOne);
-  //   levels.push(new LevelTwo);
+  levelState = 0;
+    levels.push(new LevelOne);
+    levels.push(new LevelTwo);
 }
   // this might be causing no canvas to show
-  // function startGame(){
-  //   modeButton.hide(); //hides button when clicked
-  // }
 
 function draw() {
   background(0);
@@ -59,16 +56,16 @@ function draw() {
     dialogueBox.draw();
 
   // switch statement (levels)
-  // switch(levelState){
-  //   case 0:
-  //     levels[0].draw();
-  //     break;
-  //     case 1:
-  //       levels[1].draw();
-  //     break;
-  //     case 2:
-  //       levels[2].draw();
-  // }
+  switch(levelState){
+    case 0:
+      levels[0].draw();
+      break;
+      case 1:
+        levels[1].draw();
+      break;
+      case 2:
+        levels[2].draw();
+  }
 }
 
 //dialogue

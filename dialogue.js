@@ -10,14 +10,11 @@ class DialogueBox {
     }
 
     draw() {
-    fill(0);
-    stroke(255);
-    rect(50, 250, 500, 100);
 
     fill(255);
     noStroke();
     textSize(18);
-    text(this.dialogue[this.index], 70, 280);
+    text(this.dialogue[this.index], 80, 400);
 }
 
 nextLine(){
