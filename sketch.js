@@ -1,6 +1,14 @@
 let levelState = 0
 let levels = [];
 
+//fade vales and states. W7L2(fancy levels)
+let fadeAlpha = 0;
+let fadeState = "idle";
+const FADEOUT = 'out';
+const FADEIDLE = 'idle';
+const FADEIN = "in"
+let targetLevel = null;
+
 //dialogue
 let dialogueBox;
 //startbutton
@@ -24,6 +32,10 @@ function setup() {
   modeButton.position(300,500);
   modeButton.size(130,40);
   modeButton.mousePressed(startGame);
+
+  //create levels W7L2(fancy levels)
+  levels.push(new LevelOne());
+  levels.push(new LevelTwo());
 
   //dialogue
   dialogueBox = new DialogueBox([
@@ -65,6 +77,44 @@ function draw() {
       break;
       case 2:
         levels[2].draw();
+
+      //fade effect W7L2(fancy levels)
+      updateFade();
+      drawFade();
+  }
+}
+
+//W7L2(fancy levels)
+function keyPressed(){
+  if(key === '1'){
+    targetLevel = 0;
+    fadeState = "out";
+  }
+}
+
+function updateFade(){
+  if (fadeState === FADEOUT){
+    fadeAlpha += 10;
+    if (fadeAlpha >= 255){
+      fadeAlpha = 255;
+
+      levelState = FADEIN;
+    }
+  }
+  else if (fadeAlpha === FADEIN){
+    fadeAlpha -= 10;
+    if (fadeAlpha <= 0){
+      fadeAlpha = 0;
+      fadeState = FADEIDLE;
+    }
+  }
+}
+
+function drawFsde(){
+  if (fadeAlpha > 0){
+    noStroke();
+    fill(0, fadeAlpha);
+    rect(0, 0, width, height);
   }
 }
 

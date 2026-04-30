@@ -10,13 +10,18 @@ class LevelOne{
  }
 
  draw(){
+    fill(0);
     background(0);
 }
  
 }
 
-function mousePressed(){
-    modeButton.mousePressed(startGame);
+function mousePressed(startGame){
+   if (modeButton.mousePressed){
+    background(libaryBackgroundImg);
+   } else{
+    background(0);
+   }
 }
 
 // function startGame(){

@@ -1,3 +1,4 @@
+// W7L2(dialogueBox)
 class DialogueBox {
     dialogue;
     index;
