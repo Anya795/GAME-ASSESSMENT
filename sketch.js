@@ -13,7 +13,7 @@ let targetLevel = null;
 let dialogueBox;
 //startbutton
 let modeButton;
-let startGame;
+let clickCounter = 0;
 // const startGame = "modeButton"
 //movement
 let libaryImg;
@@ -26,18 +26,14 @@ let witchImg;
 function setup() {
   createCanvas(800, 600);
   player = new Character();
-  modeButton = createButton("Start!")
-  const mainContainer = select("main");
-  modeButton.parent(mainContainer);
-  modeButton.position(300,500);
-  modeButton.size(130,40);
-  modeButton.mousePressed(startGame);
+  //PDM1 (W7L1)
+  configureCounterButton();
 
   //create levels W7L2(fancy levels)
   levels.push(new LevelOne());
   levels.push(new LevelTwo());
 
-  //dialogue
+  //dialogue W7L2(dialogueBox)
   dialogueBox = new DialogueBox([
     "Hey you! Click me! The little witch with purple hair." ,
     "Collect items to move onto the next level!" ,
@@ -49,7 +45,22 @@ function setup() {
     levels.push(new LevelOne);
     levels.push(new LevelTwo);
 }
-  // this might be causing no canvas to show
+
+function configureCounterButton(){ //PDM1 W7L1 (inputsAndEvents)
+  ////PDM1 W7L1 (Lecture 1)
+  modeButton = createButton("Start!")
+  const mainContainer = select("main");
+  modeButton.parent(mainContainer);
+  modeButton.position(300,500);
+  modeButton.size(130,40);
+  modeButton.mouseClicked(startGame);
+}
+  
+// this might be causing no canvas to show
+  function startGame(){
+    clickCounter++; ////PDM1 W7L1 (inputsAndEvents)
+    modeButton.hide();
+  }
 
 function draw() {
   background(0);
@@ -80,7 +91,7 @@ function draw() {
 
       //fade effect W7L2(fancy levels)
       updateFade();
-      drawFade();
+      drawFsde();
   }
 }
 
@@ -118,7 +129,7 @@ function drawFsde(){
   }
 }
 
-//dialogue
+//dialogue W7L2(dialogueBox)
 function mousePressed(){
   dialogueBox.nextLine();
 }
