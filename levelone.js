@@ -1,4 +1,3 @@
-
 class LevelOne{
     levelName;
     elementHelper;
@@ -19,12 +18,7 @@ class LevelOne{
 
 function startGame(){
     clickCounter++; ////PDM1 W7L1 (inputsAndEvents)
-    modeButton.hide();
-    let s = show(libaryBackgroundImg);
     background(libaryBackgroundImg);
-      libaryBackgroundImg.show();
-      player.show();
-      bookImg.show();
-      witchImg.show();
+    modeButton.hide();
     }
 

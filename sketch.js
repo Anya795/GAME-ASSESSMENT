@@ -30,8 +30,8 @@ function setup() {
   configureCounterButton();
 
   //create levels W7L2(fancy levels)
-  levels.push(new LevelOne());
-  levels.push(new LevelTwo());
+  levels.push(new LevelOne(modeButton));
+  levels.push(new LevelTwo(modeButton));
 
   //dialogue W7L2(dialogueBox)
   dialogueBox = new DialogueBox([
@@ -41,9 +41,9 @@ function setup() {
   ]);
 
   //levels
-  levelState = 0;
-    levels.push(new LevelOne);
-    levels.push(new LevelTwo);
+  // levelState = 0;
+  //   levels.push(new LevelOne);
+  //   levels.push(new LevelTwo);
 }
 
 function configureCounterButton(){ //PDM1 W7L1 (inputsAndEvents)
@@ -70,21 +70,8 @@ function configureCounterButton(){ //PDM1 W7L1 (inputsAndEvents)
 
 function draw() {
   background(0);
-  //IMAGES
-  image(libaryBackgroundImg, 0, 0, 800, 600);
-  image(libaryImg, 50, 50, 150, 150);
-  image(tilesetImg, 400, 300, 50, 60); 
-  image(bookImg, 400,350, 30, 40);
-  image(witchImg, 600, 375 , 120, 100);
-  player.update();
-  player.show();
-  player.move();
 
-  //dialogue
-  if(dialogueBox.outOfLines === false)
-    dialogueBox.draw();
-
-  // switch statement (levels)
+   // switch statement (levels)
   switch(levelState){
     case 0:
       levels[0].draw();
@@ -98,17 +85,25 @@ function draw() {
       //fade effect W7L2(fancy levels)
       updateFade();
       drawFsde();
+      push();
   }
+  
+  //IMAGES
+  image(libaryBackgroundImg, 0, 0, 800, 600);
+  image(libaryImg, 50, 50, 150, 150);
+  image(tilesetImg, 400, 300, 50, 60); 
+  image(bookImg, 400,350, 30, 40);
+  image(witchImg, 600, 375 , 120, 100);
+  player.update();
+  player.show();
+  player.move();
+
+  //dialogue
+  if(dialogueBox.outOfLines === false)
+    dialogueBox.draw();
 }
 
 //W7L2(fancy levels)
-function keyPressed(){
-  if(key === '1'){
-    targetLevel = 0;
-    fadeState = "out";
-  }
-}
-
 function updateFade(){
   if (fadeState === FADEOUT){
     fadeAlpha += 10;
@@ -140,16 +135,6 @@ function mousePressed(){
   dialogueBox.nextLine();
 }
 
-
-//levels
-function keyPressed(){
-  if(key === '1'){
-    levelState = 0;
-  } else if(key === '2'){
-    levelState = 1;
-  }
-}
-
 //images
 function preload (){
   libaryImg = loadImage('/assets/Demo.png');
@@ -166,7 +151,7 @@ function preload (){
 class Character{
   xDirection;
   yDirection;
-  speed = 2;
+  speed = 5;
     constructor(){
       this.x = 100;
       this.y = 100;
@@ -201,19 +186,19 @@ class Character{
 
 
  moveLeft() {
-  this.x -= this.speed;
+
  }
  
  moveRight() {
- this.x += this.speed;
+
 }
 
 moveUp() {
-this.y -= this.speed;
+
 }
 
 moveDown() {
-this.y += this.speed;
+
  }
 }
 
