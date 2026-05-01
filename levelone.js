@@ -1,3 +1,4 @@
+
 class LevelOne{
     levelName;
     elementHelper;
@@ -13,19 +14,17 @@ class LevelOne{
     fill(0);
     background(0);
 }
- 
+
 }
 
-function mousePressed(startGame){
-   if (modeButton.mousePressed){
+function startGame(){
+    clickCounter++; ////PDM1 W7L1 (inputsAndEvents)
+    modeButton.hide();
+    let s = show(libaryBackgroundImg);
     background(libaryBackgroundImg);
-   } else{
-    background(0);
-   }
-}
-
-// function startGame(){
-//     modeButton.hide();
-//   }
-
+      libaryBackgroundImg.show();
+      player.show();
+      bookImg.show();
+      witchImg.show();
+    }
 

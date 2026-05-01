@@ -56,11 +56,17 @@ function configureCounterButton(){ //PDM1 W7L1 (inputsAndEvents)
   modeButton.mouseClicked(startGame);
 }
   
-// this might be causing no canvas to show
-  function startGame(){
-    clickCounter++; ////PDM1 W7L1 (inputsAndEvents)
-    modeButton.hide();
-  }
+  // function startGame(mousePressed){
+  //   clickCounter++; ////PDM1 W7L1 (inputsAndEvents)
+  //   if (mousePressed){
+  //     modeButton.hide();
+  //     libaryBackgroundImg.show();
+  //     player.show();
+  //     bookImg.show();
+  //     witchImg.show();
+  //   }
+
+  // }
 
 function draw() {
   background(0);
