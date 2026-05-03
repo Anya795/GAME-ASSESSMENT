@@ -10,15 +10,30 @@ class LevelOne{
  }
 
  draw(){
-    fill(0);
-    background(0);
-}
+    // background(0);
+ }
 
 }
 
 function startGame(){
+    // background(0);
     clickCounter++; ////PDM1 W7L1 (inputsAndEvents)
-    background(libaryBackgroundImg);
-    modeButton.hide();
+    // background(libaryBackgroundImg);
+    // image(libaryBackgroundImg);
+    player.show();
+    player.move();
+    player.update();
     }
+
+function buttonHide(){
+    if (mouseIsPressed){
+        modeButton.hide();
+        // background(libaryBackgroundImg);
+        if(mouseIsPressed){
+            background(0)
+        } else{
+            background(libaryBackgroundImg);
+        }
+    }
+}
 

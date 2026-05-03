@@ -1,3 +1,5 @@
+
+
 let levelState = 0
 let levels = [];
 
@@ -48,6 +50,7 @@ function setup() {
 
 function configureCounterButton(){ //PDM1 W7L1 (inputsAndEvents)
   ////PDM1 W7L1 (Lecture 1)
+  background(0);
   modeButton = createButton("Start!")
   const mainContainer = select("main");
   modeButton.parent(mainContainer);
@@ -70,29 +73,38 @@ function configureCounterButton(){ //PDM1 W7L1 (inputsAndEvents)
 
 function draw() {
   background(0);
+  startGame();
+  buttonHide();
+  //collection item
+  let x = random(width);
+  let y = random(height);
+  strokeWeight(4);
+  fill(150, 30 ,30);
+  circle(200, 300, 200);
+
 
    // switch statement (levels)
-  switch(levelState){
+    switch(levelState){
     case 0:
-      levels[0].draw();
-      break;
-      case 1:
-        levels[1].draw();
-      break;
-      case 2:
-        levels[2].draw();
+    levels[0].draw();
+    break;
+    case 1:
+    levels[1].draw();
 
       //fade effect W7L2(fancy levels)
       updateFade();
       drawFsde();
       push();
+
   }
+
+  
   
   //IMAGES
   image(libaryBackgroundImg, 0, 0, 800, 600);
   image(libaryImg, 50, 50, 150, 150);
   image(tilesetImg, 400, 300, 50, 60); 
-  image(bookImg, 400,350, 30, 40);
+  // image(bookImg, point.x, point.y, 30, 40);
   image(witchImg, 600, 375 , 120, 100);
   player.update();
   player.show();
@@ -143,7 +155,7 @@ function preload (){
 //Author: Snoblin
 //Link:https://snoblin.itch.io/pixel-rpg-free-npc 
   tilesetImg = loadImage('/assets/Tileset.png'); //Asset licence: Creative Commons Attribution_ShareAlike v4.0 International. Author: Manu Art. Link: https://manu-art.itch.io/library-asset-pack
-  bookImg = loadImage('/assets/book2.png'); //Asset Licence: nothing. Author: Sleeping Unicorn Studio. Link: https://sleepingunicornstudios.itch.io/book
+  // bookImg = loadImage('/assets/book2.png'); //Asset Licence: nothing. Author: Sleeping Unicorn Studio. Link: https://sleepingunicornstudios.itch.io/book
   witchImg = loadImage('/assets/witch.png');
 }
 
@@ -201,14 +213,4 @@ moveDown() {
 
  }
 }
-
-
-
-
-
-
-
-
-
-
 
