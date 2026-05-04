@@ -3,7 +3,8 @@ class LevelOne{
     elementHelper;
     constructor(){
         this.levelName = "Level One"
-        this.elementHelper = this.elementHelper
+        this.elementHelper = "Level One"
+        this.AddText = "Level One"
     }
      draw(){
         ;

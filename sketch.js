@@ -40,7 +40,7 @@ function setup() {
     "Each level means you collect more items as you go along"
   ]);
 
-  levels
+  // levels
   levelState = 0;
     levels.push(new LevelOne);
     levels.push(new LevelTwo);
@@ -54,7 +54,7 @@ function configureCounterButton(){ //PDM1 W7L1 (inputsAndEvents)
   modeButton.parent(mainContainer);
   modeButton.position(300,500);
   modeButton.size(130,40);
-  modeButton.mouseClicked(startGame);
+  modeButton.mouseClicked(buttonHide);
 }
   
   // function startGame(mousePressed){
@@ -90,7 +90,7 @@ function draw() {
       levels[0].draw();
       break;
       case 2:
-        levels[1].draw();
+        levels[2].draw();
         player.update();
         player.move();
         
