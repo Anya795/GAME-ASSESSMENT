@@ -1,5 +1,3 @@
-
-
 let levelState = 0
 let levels = [];
 
@@ -42,10 +40,10 @@ function setup() {
     "Each level means you collect more items as you go along"
   ]);
 
-  //levels
-  // levelState = 0;
-  //   levels.push(new LevelOne);
-  //   levels.push(new LevelTwo);
+  levels
+  levelState = 0;
+    levels.push(new LevelOne);
+    levels.push(new LevelTwo);
 }
 
 function configureCounterButton(){ //PDM1 W7L1 (inputsAndEvents)
@@ -75,21 +73,27 @@ function draw() {
   background(0);
   startGame();
   buttonHide();
-  //collection item
-  let x = random(width);
-  let y = random(height);
-  strokeWeight(4);
-  fill(150, 30 ,30);
-  circle(200, 300, 200);
-
-
-   // switch statement (levels)
-    switch(levelState){
+  // let x = random(800);
+  // let y = random(600);
+  
+  // //collection item
+  // strokeWeight(4);
+  //   fill(150, 30 ,30);
+  //   circle(x, y, 15);
+  
+ 
+  // switch statement (levels)
+  switch(levelState){
     case 0:
-    levels[0].draw();
-    break;
-    case 1:
-    levels[1].draw();
+      break;
+      case 1:
+      levels[0].draw();
+      break;
+      case 2:
+        levels[1].draw();
+        player.update();
+        player.move();
+        
 
       //fade effect W7L2(fancy levels)
       updateFade();
@@ -101,11 +105,11 @@ function draw() {
   
   
   //IMAGES
-  image(libaryBackgroundImg, 0, 0, 800, 600);
+  // image(libaryBackgroundImg, 0, 0, 800, 600);
   image(libaryImg, 50, 50, 150, 150);
   image(tilesetImg, 400, 300, 50, 60); 
   // image(bookImg, point.x, point.y, 30, 40);
-  image(witchImg, 600, 375 , 120, 100);
+  // image(witchImg, 600, 375 , 120, 100);
   player.update();
   player.show();
   player.move();
