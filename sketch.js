@@ -1,5 +1,5 @@
 // let gameStarted = false;
-
+let checkForItem;
 let girdWidth = 30;
 let gridHeight = 30;
 
@@ -38,6 +38,14 @@ let witchImg;
 function setup() {
   createCanvas(800, 600);
   player = new Character();
+  
+  //random coordinates
+  let x = random(800);
+  let y = random(600);
+
+  strokeWeight(4);
+  point(x, y)
+  
   //PDM1 (W7L1)
   configureCounterButton();
 
@@ -85,21 +93,18 @@ function draw() {
   background(0);
   startGame();
   buttonHide();
-  let x = random(800);
-  let y = random(600);
 
-  scale(width / girdWidth, height / gridHeight); //mades item disapear
+  // scale(width / girdWidth, height / gridHeight); 
   
   
   //collection item
-  strokeWeight(4);
-    fill(150, 30 ,30);
-    circle(x, y, 15);
+  fill(100, 50, 200);
+    circle(20, 20, 15);
 
   //collection item coordinates
   //https://p5js.org/examples/games-snake/ - used some of this code
-  translate(0.5, 0.5);
-  showItem();
+  // translate(0.5, 0.5);
+  // showItem(); //stopping everything else from showing
 
   
  
@@ -125,13 +130,12 @@ function draw() {
 
   //collection item
   function showItem(){
-    stroke(255, 64, 32);
-    point(item.x, item.y);
+    point(x, y);
   }
 
-  function checkForItem(){
-    updateItemCoordinates();
-  }
+  // function checkForItem(){
+  //   updateItemCoordinates();
+  // }
   
 function updateItemCoordinates(){
   let x = floor(random(girdWidth));

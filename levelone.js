@@ -1,3 +1,5 @@
+
+
 class LevelOne{
     levelName;
     elementHelper;
@@ -34,7 +36,6 @@ function buttonHide(){
             levelState = 2;
             image(libaryBackgroundImg, 0, 0, 800, 600);
             image(witchImg, 600, 375 , 120, 100);
-            // player.move();
         } else{
             background(0)
             levelState = 0;
