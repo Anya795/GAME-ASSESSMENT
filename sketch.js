@@ -1,3 +1,15 @@
+// let gameStarted = false;
+
+let girdWidth = 30;
+let gridHeight = 30;
+
+//starting coordinates
+let xStart = 200;
+let yStart = 300;
+
+let item; //my fruit to the snake game
+
+
 let levelState = 0
 let levels = [];
 
@@ -75,11 +87,20 @@ function draw() {
   buttonHide();
   let x = random(800);
   let y = random(600);
+
+  scale(width / girdWidth, height / gridHeight); //mades item disapear
+  
   
   //collection item
   strokeWeight(4);
     fill(150, 30 ,30);
     circle(x, y, 15);
+
+  //collection item coordinates
+  //https://p5js.org/examples/games-snake/ - used some of this code
+  translate(0.5, 0.5);
+  showItem();
+
   
  
   // switch statement (levels)
@@ -102,7 +123,22 @@ function draw() {
 
   }
 
+  //collection item
+  function showItem(){
+    stroke(255, 64, 32);
+    point(item.x, item.y);
+  }
+
+  function checkForItem(){
+    updateItemCoordinates();
+  }
   
+function updateItemCoordinates(){
+  let x = floor(random(girdWidth));
+  let y = floor(random(gridHeight));
+  fruit = createVector(x, y);
+
+}
   
   //IMAGES
   // image(libaryBackgroundImg, 0, 0, 800, 600);

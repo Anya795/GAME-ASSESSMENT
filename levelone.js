@@ -29,6 +29,7 @@ function startGame(){
 function buttonHide(){
     if (mouseIsPressed){
         modeButton.hide();
+        // if (gameStarted === false);
         if(mouseIsPressed){
             levelState = 2;
             image(libaryBackgroundImg, 0, 0, 800, 600);
