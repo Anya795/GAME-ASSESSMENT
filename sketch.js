@@ -73,13 +73,13 @@ function draw() {
   background(0);
   startGame();
   buttonHide();
-  // let x = random(800);
-  // let y = random(600);
+  let x = random(800);
+  let y = random(600);
   
-  // //collection item
-  // strokeWeight(4);
-  //   fill(150, 30 ,30);
-  //   circle(x, y, 15);
+  //collection item
+  strokeWeight(4);
+    fill(150, 30 ,30);
+    circle(x, y, 15);
   
  
   // switch statement (levels)
