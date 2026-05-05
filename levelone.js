@@ -14,7 +14,7 @@ class LevelOne{
  }
 
  draw(){
-    // image(libaryBackgroundImg, 0, 0, 800, 600);
+    image(libaryBackgroundImg, 0, 0, 800, 600);
     // background(0);
  }
 
@@ -31,17 +31,19 @@ function startGame(){
 function buttonHide(){
     if (mouseIsPressed){
         modeButton.hide();
+        image(libaryBackgroundImg, 0, 0, 800, 600);
+
         // if (gameStarted === false);
-        if(mouseIsPressed){
-            levelState = 2;
-            image(libaryBackgroundImg, 0, 0, 800, 600);
-            image(witchImg, 600, 375 , 120, 100);
-        } else{
-            background(0)
-            levelState = 0;
-        }
-        player.show();
-        player.update()
-        player.move();
+        // if(mouseIsPressed){
+        //     levelState = 2;
+        //     image(libaryBackgroundImg, 0, 0, 800, 600);
+        //     image(witchImg, 600, 375 , 120, 100);
+        // } else{
+        //     background(0)
+        //     levelState = 0;
+        // }
+        // player.show();
+        // player.update()
+        // player.move();
     }
 }

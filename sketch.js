@@ -154,6 +154,7 @@ function updateItemCoordinates(){
   player.show();
   player.move();
 
+
   //dialogue
   if(dialogueBox.outOfLines === false)
     dialogueBox.draw();
