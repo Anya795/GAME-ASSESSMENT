@@ -15,13 +15,12 @@ class LevelOne{
 
  draw(){
     image(libaryBackgroundImg, 0, 0, 800, 600);
-    // background(0);
  }
 
 }
 
 function startGame(){
-    // background(0);
+
     clickCounter++; ////PDM1 W7L1 (inputsAndEvents)
     player.show();
     player.move();
@@ -33,17 +32,17 @@ function buttonHide(){
         modeButton.hide();
         image(libaryBackgroundImg, 0, 0, 800, 600);
 
-        // if (gameStarted === false);
-        // if(mouseIsPressed){
-        //     levelState = 2;
-        //     image(libaryBackgroundImg, 0, 0, 800, 600);
-        //     image(witchImg, 600, 375 , 120, 100);
-        // } else{
-        //     background(0)
-        //     levelState = 0;
-        // }
-        // player.show();
-        // player.update()
-        // player.move();
+        if(mouseIsPressed){
+            levelState = 2;
+            image(libaryBackgroundImg, 0, 0, 800, 600);
+            image(witchImg, 600, 375 , 120, 100);
+            dialogueBox.show();
+        } else{
+            background(0)
+            levelState = 0;
+        }
+        player.show();
+        player.update()
+        player.move();
     }
 }

@@ -4,9 +4,7 @@ let girdWidth = 30;
 let gridHeight = 30;
 
 //starting coordinates
-let xStart = 200;
-let yStart = 300;
-
+let x, y;
 let item; //my fruit to the snake game
 
 
@@ -35,13 +33,25 @@ let player;
 let bookImg;
 let witchImg;
 
+//images
+function preload (){
+  libaryImg = loadImage('/assets/Demo.png');
+  libaryBackgroundImg = loadImage('/assets/Background.png'); //Asset licence: Creative Commons Attribution_ShareAlike v4.0 International. Author: Manu Art. Link: https://manu-art.itch.io/library-asset-pack
+  spriteImg = loadImage('/assets/prototype_character.png'); //Asset licence: You can use these assets in commercial and non-commercial projects. You can edit these assets. You can't redistribute or resell these assets, even if they have been modified. 
+//Author: Snoblin
+//Link:https://snoblin.itch.io/pixel-rpg-free-npc 
+  tilesetImg = loadImage('/assets/Tileset.png'); //Asset licence: Creative Commons Attribution_ShareAlike v4.0 International. Author: Manu Art. Link: https://manu-art.itch.io/library-asset-pack
+  // bookImg = loadImage('/assets/book2.png'); //Asset Licence: nothing. Author: Sleeping Unicorn Studio. Link: https://sleepingunicornstudios.itch.io/book
+  witchImg = loadImage('/assets/witch.png');
+}
+
 function setup() {
   createCanvas(800, 600);
   player = new Character();
   
   //random coordinates
-  let x = random(800);
-  let y = random(600);
+  x = random(800);
+  y = random(600);
 
   strokeWeight(4);
   point(x, y)
@@ -65,6 +75,7 @@ function setup() {
     levels.push(new LevelOne);
     levels.push(new LevelTwo);
 }
+
 
 function configureCounterButton(){ //PDM1 W7L1 (inputsAndEvents)
   ////PDM1 W7L1 (Lecture 1)
@@ -91,20 +102,33 @@ function configureCounterButton(){ //PDM1 W7L1 (inputsAndEvents)
 
 function draw() {
   background(0);
+  image(libaryBackgroundImg, 0, 0, 800, 600);
+    //collection item
+
   startGame();
-  buttonHide();
+  image(witchImg, 600, 375 , 120, 100);
+
+  fill(100, 50, 200);
+  circle(x, y, 15);
+  //IMAGES
+  // image(libaryImg, 50, 50, 150, 150);
+  // image(tilesetImg, 400, 300, 50, 60); 
+  // image(bookImg, point.x, point.y, 30, 40);
+
+  player.update();
+  player.show();
+  player.move();
+  
+  // buttonHide();
 
   // scale(width / girdWidth, height / gridHeight); 
   
-  
-  //collection item
-  fill(100, 50, 200);
-    circle(20, 20, 15);
+
 
   //collection item coordinates
   //https://p5js.org/examples/games-snake/ - used some of this code
-  // translate(0.5, 0.5);
-  // showItem(); //stopping everything else from showing
+  translate(0.5, 0.5);
+  // showItem();
 
   
  
@@ -123,7 +147,7 @@ function draw() {
 
       //fade effect W7L2(fancy levels)
       updateFade();
-      drawFsde();
+      drawFade();
       push();
 
   }
@@ -143,16 +167,7 @@ function updateItemCoordinates(){
   fruit = createVector(x, y);
 
 }
-  
-  //IMAGES
-  // image(libaryBackgroundImg, 0, 0, 800, 600);
-  image(libaryImg, 50, 50, 150, 150);
-  image(tilesetImg, 400, 300, 50, 60); 
-  // image(bookImg, point.x, point.y, 30, 40);
-  // image(witchImg, 600, 375 , 120, 100);
-  player.update();
-  player.show();
-  player.move();
+
 
 
   //dialogue
@@ -179,7 +194,7 @@ function updateFade(){
   }
 }
 
-function drawFsde(){
+function drawFade(){
   if (fadeAlpha > 0){
     noStroke();
     fill(0, fadeAlpha);
@@ -192,17 +207,6 @@ function mousePressed(){
   dialogueBox.nextLine();
 }
 
-//images
-function preload (){
-  libaryImg = loadImage('/assets/Demo.png');
-  libaryBackgroundImg = loadImage('/assets/Background.png'); //Asset licence: Creative Commons Attribution_ShareAlike v4.0 International. Author: Manu Art. Link: https://manu-art.itch.io/library-asset-pack
-  spriteImg = loadImage('/assets/prototype_character.png'); //Asset licence: You can use these assets in commercial and non-commercial projects. You can edit these assets. You can't redistribute or resell these assets, even if they have been modified. 
-//Author: Snoblin
-//Link:https://snoblin.itch.io/pixel-rpg-free-npc 
-  tilesetImg = loadImage('/assets/Tileset.png'); //Asset licence: Creative Commons Attribution_ShareAlike v4.0 International. Author: Manu Art. Link: https://manu-art.itch.io/library-asset-pack
-  // bookImg = loadImage('/assets/book2.png'); //Asset Licence: nothing. Author: Sleeping Unicorn Studio. Link: https://sleepingunicornstudios.itch.io/book
-  witchImg = loadImage('/assets/witch.png');
-}
 
 
 class Character{
