@@ -1,7 +1,4 @@
-// let gameStarted = false;
-let checkForItem;
-let girdWidth = 30;
-let gridHeight = 30;
+
 
 //starting coordinates
 let x, y;
@@ -29,7 +26,6 @@ let clickCounter = 0;
 let libaryImg;
 let libaryBackgroundImg;
 let spriteImg;
-let player;
 let bookImg;
 let witchImg;
 
@@ -87,18 +83,7 @@ function configureCounterButton(){ //PDM1 W7L1 (inputsAndEvents)
   modeButton.size(130,40);
   modeButton.mouseClicked(buttonHide);
 }
-  
-  // function startGame(mousePressed){
-  //   clickCounter++; ////PDM1 W7L1 (inputsAndEvents)
-  //   if (mousePressed){
-  //     modeButton.hide();
-  //     libaryBackgroundImg.show();
-  //     player.show();
-  //     bookImg.show();
-  //     witchImg.show();
-  //   }
 
-  // }
 
 function draw() {
   background(0);
@@ -118,10 +103,6 @@ function draw() {
   player.update();
   player.show();
   player.move();
-  
-  // buttonHide();
-
-  // scale(width / girdWidth, height / gridHeight); 
   
 
 
