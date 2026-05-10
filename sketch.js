@@ -1,20 +1,10 @@
-
-
 //starting coordinates
 let x, y;
-let item; //my fruit to the snake game
+let item; 
 
-
-let levelState = 0
-let levels = [];
-
-//fade vales and states. W7L2(fancy levels)
-let fadeAlpha = 0;
-let fadeState = "idle";
-const FADEOUT = 'out';
-const FADEIDLE = 'idle';
-const FADEIN = "in"
-let targetLevel = null;
+//dungeon
+let dungeonImg;
+let dungeonTile;
 
 //dialogue
 let dialogueBox;
@@ -29,6 +19,7 @@ let spriteImg;
 let bookImg;
 let witchImg;
 
+
 //images
 function preload (){
   libaryImg = loadImage('/assets/Demo.png');
@@ -39,10 +30,15 @@ function preload (){
   tilesetImg = loadImage('/assets/Tileset.png'); //Asset licence: Creative Commons Attribution_ShareAlike v4.0 International. Author: Manu Art. Link: https://manu-art.itch.io/library-asset-pack
   // bookImg = loadImage('/assets/book2.png'); //Asset Licence: nothing. Author: Sleeping Unicorn Studio. Link: https://sleepingunicornstudios.itch.io/book
   witchImg = loadImage('/assets/witch.png');
+  dungeonImg = loadImage('/assets/Dungeon_Tileset.png')
 }
 
 function setup() {
   createCanvas(800, 600);
+  //dungeon
+  dungeonTile = new dungeon(dungeonImg);
+  
+  
   player1 = new Character();
   
   //random coordinates
@@ -52,13 +48,7 @@ function setup() {
   strokeWeight(4);
   point(x, y)
 
-  
-  //PDM1 (W7L1)
-  configureCounterButton();
 
-  //create levels W7L2(fancy levels)
-  levels.push(new LevelOne(modeButton));
-  levels.push(new LevelTwo(modeButton));
 
   //dialogue W7L2(dialogueBox)
   dialogueBox = new DialogueBox([
@@ -67,29 +57,14 @@ function setup() {
     "Each level means you collect more items as you go along"
   ]);
 
-  // levels
-  levelState = 0;
-    levels.push(new LevelOne);
-    levels.push(new LevelTwo);
 }
-
-
-function configureCounterButton(){ //PDM1 W7L1 (inputsAndEvents)
-  ////PDM1 W7L1 (Lecture 1)
-  background(0);
-  modeButton = createButton("Start!")
-  const mainContainer = select("main");
-  modeButton.parent(mainContainer);
-  modeButton.position(300,500);
-  modeButton.size(130,40);
-  modeButton.mouseClicked(buttonHide);
-}
-
 
 function draw() {
   background(0);
-  image(libaryBackgroundImg, 0, 0, 800, 600);
-    //collection item
+  // image(libaryBackgroundImg, 0, 0, 800, 600);
+
+  //dungeon
+  
 
   startGame();
   image(witchImg, 600, 375 , 120, 100);
@@ -113,43 +88,6 @@ function draw() {
   translate(0.5, 0.5);
   // showItem();
 
-  
- 
-  // switch statement (levels)
-  switch(levelState){
-    case 0:
-      break;
-      case 1:
-      levels[0].draw();
-      break;
-      case 2:
-        levels[2].draw();
-        player1.update();
-        player1.move();
-        
-
-      //fade effect W7L2(fancy levels)
-      updateFade();
-      drawFade();
-      push();
-
-  }
-
-  //collection item
-  function showItem(){
-    point(x, y);
-  }
-
-  // function checkForItem(){
-  //   updateItemCoordinates();
-  // }
-  
-function updateItemCoordinates(){
-  let x = floor(random(girdWidth));
-  let y = floor(random(gridHeight));
-  fruit = createVector(x, y);
-
-}
 
 
 
@@ -158,32 +96,6 @@ function updateItemCoordinates(){
     dialogueBox.draw();
 }
 
-//W7L2(fancy levels)
-function updateFade(){
-  if (fadeState === FADEOUT){
-    fadeAlpha += 10;
-    if (fadeAlpha >= 255){
-      fadeAlpha = 255;
-
-      levelState = FADEIN;
-    }
-  }
-  else if (fadeAlpha === FADEIN){
-    fadeAlpha -= 10;
-    if (fadeAlpha <= 0){
-      fadeAlpha = 0;
-      fadeState = FADEIDLE;
-    }
-  }
-}
-
-function drawFade(){
-  if (fadeAlpha > 0){
-    noStroke();
-    fill(0, fadeAlpha);
-    rect(0, 0, width, height);
-  }
-}
 
 //dialogue W7L2(dialogueBox)
 function mousePressed(){
