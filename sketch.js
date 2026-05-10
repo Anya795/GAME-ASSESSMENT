@@ -43,7 +43,7 @@ function preload (){
 
 function setup() {
   createCanvas(800, 600);
-  player = new Character();
+  player1 = new Character();
   
   //random coordinates
   x = random(800);
@@ -51,6 +51,7 @@ function setup() {
 
   strokeWeight(4);
   point(x, y)
+
   
   //PDM1 (W7L1)
   configureCounterButton();
@@ -100,9 +101,10 @@ function draw() {
   // image(tilesetImg, 400, 300, 50, 60); 
   // image(bookImg, point.x, point.y, 30, 40);
 
-  player.update();
-  player.show();
-  player.move();
+
+  player1.update();
+  player1.show();
+  player1.move();
   
 
 
@@ -122,8 +124,8 @@ function draw() {
       break;
       case 2:
         levels[2].draw();
-        player.update();
-        player.move();
+        player1.update();
+        player1.move();
         
 
       //fade effect W7L2(fancy levels)

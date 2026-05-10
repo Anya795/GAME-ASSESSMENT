@@ -22,9 +22,9 @@ class LevelOne{
 function startGame(){
 
     clickCounter++; ////PDM1 W7L1 (inputsAndEvents)
-    player.show();
-    player.move();
-    player.update();
+    player1.show();
+    player1.move();
+    player1.update();
     }
 
 function buttonHide(){
@@ -41,8 +41,8 @@ function buttonHide(){
             background(0)
             levelState = 0;
         }
-        player.show();
-        player.update()
-        player.move();
+        player1.show();
+        player1.update()
+        player1.move();
     }
 }
