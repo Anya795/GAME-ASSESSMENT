@@ -8,6 +8,10 @@ class dungeon{
         image(this.image, x, y, 50, 50, 144, 144, 16, 16);
     }
 
+    AddSilverKey(x, y){
+        image(this.image, x, y, 50, 50, 128, 128, 16, 16)
+    }
+
     // AddChest(x, y){
     //     image(this.image, x, y, 100, 100, 675, 1005, 320, 320);
     // }

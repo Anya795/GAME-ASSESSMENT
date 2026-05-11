@@ -64,7 +64,9 @@ function draw() {
   // image(libaryBackgroundImg, 0, 0, 800, 600);
 
   //dungeon
-  
+  dungeonTile.AddKey(300, 400);
+  dungeonTile.AddWall(100, 100);
+  dungeonTile.AddSilverKey(100, 400);
 
   startGame();
   image(witchImg, 600, 375 , 120, 100);
