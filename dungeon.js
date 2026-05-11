@@ -6,7 +6,7 @@ class dungeon{
         this.image = image;
     }
 
-    AddKey(x, y){
+    AddGoldKey(x, y){
         image(this.image, x, y, 50, 50, 144, 144, 16, 16);
     }
 
@@ -27,11 +27,11 @@ class dungeon{
     }
 
     AddWall3(x, y){
-        image(this.image, x, y, 200, 200, 16, 2, 64, 64 );
+        image(this.image, x, y, 200, 200, 16, 10, 64, 64 );
     }
 
     AddWall4(x, y){
-        image(this.image, x, y, 200, 200, 30, 16, 64, 64 );
+        image(this.image, x, y, 200, 200, 80, 16, 64, 64 );
     }
 
     // AddSideWall(x, y){

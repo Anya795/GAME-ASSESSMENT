@@ -41,12 +41,7 @@ function setup() {
   
   player1 = new Character();
   
-  //random coordinates
-  x = random(800);
-  y = random(600);
 
-  strokeWeight(4);
-  point(x, y)
 
 
 
@@ -61,6 +56,11 @@ function setup() {
 
 function draw() {
   background(0);
+  update();
+
+  if (goldKey[0].collected === false) {
+    dungeonTile.AddGoldKey(goldKey[0].x, goldKey[0].y);
+  }
   // image(libaryBackgroundImg, 0, 0, 800, 600);
 
   //dungeon walls
@@ -78,34 +78,34 @@ function draw() {
   dungeonTile.AddWall2(500, 100); //top right
   
   //middle
-  dungeonTile.AddWall2(100,300); //middle left
-  dungeonTile.AddWall2(300,300); //middle middle(centre)
-  dungeonTile.AddWall2(500,300); //middle right
+  dungeonTile.AddWall3(100,300); //middle left
+  dungeonTile.AddWall3(300,300); //middle middle(centre)
+  dungeonTile.AddWall3(500,300); //middle right
 
   //bottom
-  dungeonTile.AddWall2(100,500); //bottom left
-  dungeonTile.AddWall2(300,500); //bottom middle
-  dungeonTile.AddWall2(500,500); //bottom right
+  dungeonTile.AddWall4(100,500); //bottom left
+  dungeonTile.AddWall4(300,500); //bottom middle
+  dungeonTile.AddWall4(500,500); //bottom right
   
   //side wall
-  dungeonTile.AddSideWall(200,300);
+  // dungeonTile.AddSideWall(200,300);
 
   
   //items/collections
   dungeonTile.AddSilverKey(100, 400);
-  dungeonTile.AddKey(300, 400);
+  dungeonTile.AddGoldKey(250, 200);
 
   startGame();
   image(witchImg, 600, 375 , 120, 100);
-
-  fill(100, 50, 200);
-  circle(x, y, 15);
   //IMAGES
   // image(libaryImg, 50, 50, 150, 150);
   // image(tilesetImg, 400, 300, 50, 60); 
   // image(bookImg, point.x, point.y, 30, 40);
 
-
+  noFill();
+  stroke(255, 0, 0);
+  rect(player.x, player.y, player.width, player.height);
+  rect(goldKey[0].x, goldKey[0].y, goldKey[0].width, goldKey[0].height)
   player1.update();
   player1.show();
   player1.move();
@@ -138,8 +138,8 @@ class Character{
   yDirection;
   speed = 5;
     constructor(){
-      this.x = 100;
-      this.y = 100;
+      this.x = 200;
+      this.y = 250;
       this.speed = 2;
 }
 
