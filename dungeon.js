@@ -9,7 +9,7 @@ class dungeon{
     }
 
     AddSilverKey(x, y){
-        image(this.image, x, y, 50, 50, 128, 128, 16, 16)
+        image(this.image, x, y, 50, 50, 128, 128, 16, 16);
     }
 
     // AddChest(x, y){
@@ -21,7 +21,12 @@ class dungeon{
     }
 
     AddWall2(x, y){
-        image(this.image, x, y, )
+        image(this.image, x, y, 200, 200, 16, 16, 64, 64 );
     }
+
+    AddSideWall(x, y){
+        image(this.image, x, y, 300, 40, 0, 60, 90, 16);
+    }
+
 
 }

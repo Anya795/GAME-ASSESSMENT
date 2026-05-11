@@ -63,10 +63,37 @@ function draw() {
   background(0);
   // image(libaryBackgroundImg, 0, 0, 800, 600);
 
-  //dungeon
-  dungeonTile.AddKey(300, 400);
-  dungeonTile.AddWall(100, 100);
+  //dungeon walls
+  
+  //top top
+
+  dungeonTile.AddWall(100, 0); //left
+  dungeonTile.AddWall(300, 0); //middle
+  dungeonTile.AddWall(500, 0); //right
+
+  
+  //top
+  dungeonTile.AddWall(100, 100); //top left
+  dungeonTile.AddWall2(300, 100); //top middle
+  dungeonTile.AddWall2(500, 100); //top right
+  
+  //middle
+  dungeonTile.AddWall2(100,300); //middle left
+  dungeonTile.AddWall2(300,300); //middle middle(centre)
+  dungeonTile.AddWall2(500,300); //middle right
+
+  //bottom
+  dungeonTile.AddWall2(100,500); //bottom left
+  dungeonTile.AddWall2(300,500); //bottom middle
+  dungeonTile.AddWall2(500,500); //bottom right
+  
+  //side wall
+  dungeonTile.AddSideWall(200,300);
+
+  
+  //items/collections
   dungeonTile.AddSilverKey(100, 400);
+  dungeonTile.AddKey(300, 400);
 
   startGame();
   image(witchImg, 600, 375 , 120, 100);
