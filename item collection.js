@@ -1,37 +1,44 @@
-// class collection{
-//     image;
-//     constructor(rect){
-//         this.rect = rect;
-//     }
-// }
+class collection{
+  x;
+  y;
+  key; //silver or gold
+    constructor(goldKey, silverKey){
+      this.x = 100;
+      this.y = 100;
+      this.width = 50;
+      this.height = 50;
+      this.goldKey = goldKey;
+      this.silverKey = silverKey;
+      this.collected = false;
 
-const player = {
-x: 250,
-y: 200,
+    }
 
-width: 30,
-height: 40,
-}
+    show(){
+        if(!this.collected){
+            if(this.type === 'gold'){
+                image(this.goldKey, this.x, this.y, 50, 50, 144, 144, 16, 16); } else{
+                        image(this.silverKey, this.x, this.y, 50, 50, 128, 128, 16, 16);
+                    }
+                }
+            }
+        }
 
-let goldKey = [
-    { x: 250, y: 200, height: 50, width: 50, collected: false }
-]
 
-function collisionCheck(rect1, rect2){
-    return(
-    rect1.x < rect2.x + rect2.width &&
-    rect1.x + rect1.width > rect2.x &&
-    rect1.y < rect2.y + rect2.height &&
-    rect1.y + rect1.height > rect2.y
-    );
-}
+
+function collisionCheck(player){
+    if(!this.collected && collisionCheck(player, this)) {
+        this.collected = true;
+        console.log("Key picked up!");
+        return true;
+    }
+    return false;
+        }
+    
+
 
 function update() {
-    if(!goldKey[0].collected) {
-        if(collisionCheck(player, goldKey[0])){
-            goldKey[0].collected = true;
-            console.log("Key picked up!");
-        }
+    for (let k of keys){
+        k.collisionCheck(player);
     }
 }
 

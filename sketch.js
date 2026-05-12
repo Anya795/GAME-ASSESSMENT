@@ -1,6 +1,6 @@
 //starting coordinates
 let x, y;
-let item; 
+let keys = [];
 
 //dungeon
 let dungeonImg;
@@ -40,8 +40,10 @@ function setup() {
   
   
   player1 = new Character();
-  
 
+  // keys = new collection();
+  // keys.push(new key, 'gold');
+  // keys.push(new key, 'silver');
 
 
 
@@ -56,11 +58,6 @@ function setup() {
 
 function draw() {
   background(0);
-  update();
-
-  if (goldKey[0].collected === false) {
-    dungeonTile.AddGoldKey(goldKey[0].x, goldKey[0].y);
-  }
   // image(libaryBackgroundImg, 0, 0, 800, 600);
 
   //dungeon walls
@@ -79,7 +76,7 @@ function draw() {
   
   //middle
   dungeonTile.AddWall3(100,300); //middle left
-  dungeonTile.AddWall3(300,300); //middle middle(centre)
+  dungeonTile.AddWall5(300,300); //middle middle(centre)
   dungeonTile.AddWall3(500,300); //middle right
 
   //bottom
@@ -138,8 +135,8 @@ class Character{
   yDirection;
   speed = 5;
     constructor(){
-      this.x = 200;
-      this.y = 250;
+      this.x = 100;
+      this.y = 100;
       this.speed = 2;
 }
 
