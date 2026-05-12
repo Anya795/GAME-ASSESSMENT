@@ -35,6 +35,14 @@ function preload (){
 
 function setup() {
   createCanvas(800, 600);
+
+  //dungeon
+  dungeonTile = new dungeon(dungeonImg);
+  player1 = new Character();
+
+  keys.push(new collection(100, 400, 'silver', spriteImg));
+  keys.push(new collection(250, 200, 'gold', spriteImg));
+  
   //button
   modeButton = createButton("START");
   const mainContainer = select("main");
@@ -42,14 +50,8 @@ function setup() {
   modeButton.position(0,0);
   modeButton.size(100, 40);
   modeButton.position(350, 200)
-
   
   
-  //dungeon
-  dungeonTile = new dungeon(dungeonImg);
-  
-  
-  player1 = new Character();
 
 
 
@@ -101,7 +103,7 @@ function draw() {
 
    if(gameStart === "PLAYING"){
      for (let k of keys){
-    k.show();
+    // k.show();
   }
     if(dialogueBox.outOfLines === false)
     dialogueBox.draw();
@@ -111,12 +113,15 @@ function draw() {
     player1.update();
     player1.show();
     player1.move();
+    
+  }else if (gameStart === "MENU"){
+    stroke(70, 60, 100);
+    fill(255, 200, 200)
+    textSize(25);
+    text("Dungeon Keys", 300 , 100)
+    textFont(myFont);
   }
-  stroke(70, 60, 100);
-  fill(255, 200, 200)
-  textSize(25);
-  text("Dungeon Keys", 300 , 100)
-  textFont(myFont);
+
 
 
   

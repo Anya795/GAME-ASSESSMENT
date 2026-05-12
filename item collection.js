@@ -11,24 +11,25 @@ class collection{
   x;
   y;
   key; //silver or gold
-    constructor(AddGoldKey, AddSilverKey){
-      this.x = 100;
-      this.y = 100;
+    constructor(keyImage, keyType){
+      x = 100;
+      y = 100;
       this.width = 50;
       this.height = 50;
-      this.AddGoldKey = AddGoldKey;
-      this.AddSilverKey = AddSilverKey;
+      this.keyType = keyType
+      this.keyImage = keyImage;
       this.collected = false;
+      
+
 
     }
 
     show(){
         if(!this.collected){
-            if(this.AddGoldKey === 'gold'){
-                image(this.AddGoldKey, this.x, this.y, 50, 50, 144, 144, 16, 16); } else{
-                        image(this.AddSilverKey, this.x, this.y, 50, 50, 128, 128, 16, 16);
+            if(this.keyImage === 'gold'){
+                image(this.keyImage, this.x, this.y, 50, 50, 144, 144, 16, 16); } else{
+                        image(this.keyImage, this.x, this.y, 50, 50, 128, 128, 16, 16);
                     }
-                     updateCollision(player)
                 }if(!this.collected && rect(player, this)) {
                     this.collected = true;
                     console.log("Key picked up!");
