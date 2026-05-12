@@ -35,7 +35,7 @@ class dungeon{
     }
 
     AddWall5(x, y){
-        image(this.image, x, y, 200, 200, 15, 17, 64, 64);
+        image(this.image, x, y, 200, 200, 15, 17, 50, 50);
     }
 
     // AddSideWall(x, y){

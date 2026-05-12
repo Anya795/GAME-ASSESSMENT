@@ -2,14 +2,13 @@
 let x, y;
 let keys = [];
 
+let myFont;
 //dungeon
 let dungeonImg;
 let dungeonTile;
 
 //dialogue
 let dialogueBox;
-//startbutton
-let modeButton;
 let clickCounter = 0;
 // const startGame = "modeButton"
 //movement
@@ -30,82 +29,96 @@ function preload (){
   tilesetImg = loadImage('/assets/Tileset.png'); //Asset licence: Creative Commons Attribution_ShareAlike v4.0 International. Author: Manu Art. Link: https://manu-art.itch.io/library-asset-pack
   // bookImg = loadImage('/assets/book2.png'); //Asset Licence: nothing. Author: Sleeping Unicorn Studio. Link: https://sleepingunicornstudios.itch.io/book
   witchImg = loadImage('/assets/witch.png');
-  dungeonImg = loadImage('/assets/Dungeon_Tileset.png')
+  dungeonImg = loadImage('/assets/Dungeon_Tileset.png');
+  myFont = loadFont('assets/CassandraPersonalUseRegular-3BjG.ttf');
 }
 
 function setup() {
   createCanvas(800, 600);
+  //button
+  modeButton = createButton("START");
+  const mainContainer = select("main");
+  modeButton.parent(mainContainer);
+  modeButton.position(0,0);
+  modeButton.size(100, 40);
+  modeButton.position(350, 200)
+
+  
+  
   //dungeon
   dungeonTile = new dungeon(dungeonImg);
   
   
   player1 = new Character();
 
-  // keys = new collection();
-  // keys.push(new key, 'gold');
-  // keys.push(new key, 'silver');
-
 
 
   //dialogue W7L2(dialogueBox)
   dialogueBox = new DialogueBox([
+    "",
+    "",
     "Hey you! Click me! The little witch with purple hair." ,
     "Collect items to move onto the next level!" ,
     "Each level means you collect more items as you go along"
   ]);
 
 }
+//dialogue W7L2(dialogueBox)
+function mousePressed(){
+  dialogueBox.nextLine();
+}
 
 function draw() {
   background(0);
-  // image(libaryBackgroundImg, 0, 0, 800, 600);
-
+  
   //dungeon walls
   
   //top top
 
-  dungeonTile.AddWall(100, 0); //left
+  dungeonTile.AddWall3(100, 0); //left
   dungeonTile.AddWall(300, 0); //middle
   dungeonTile.AddWall(500, 0); //right
 
   
   //top
   dungeonTile.AddWall(100, 100); //top left
-  dungeonTile.AddWall2(300, 100); //top middle
+  dungeonTile.AddWall(300, 100); //top middle
   dungeonTile.AddWall2(500, 100); //top right
   
   //middle
   dungeonTile.AddWall3(100,300); //middle left
   dungeonTile.AddWall5(300,300); //middle middle(centre)
-  dungeonTile.AddWall3(500,300); //middle right
+  dungeonTile.AddWall(500,300); //middle right
 
   //bottom
-  dungeonTile.AddWall4(100,500); //bottom left
-  dungeonTile.AddWall4(300,500); //bottom middle
-  dungeonTile.AddWall4(500,500); //bottom right
+  dungeonTile.AddWall5(100,500); //bottom left
+  dungeonTile.AddWall2(300,500); //bottom middle
+  dungeonTile.AddWall(500,500); //bottom right
   
   //side wall
   // dungeonTile.AddSideWall(200,300);
 
-  
-  //items/collections
-  dungeonTile.AddSilverKey(100, 400);
-  dungeonTile.AddGoldKey(250, 200);
 
-  startGame();
-  image(witchImg, 600, 375 , 120, 100);
-  //IMAGES
-  // image(libaryImg, 50, 50, 150, 150);
-  // image(tilesetImg, 400, 300, 50, 60); 
-  // image(bookImg, point.x, point.y, 30, 40);
+   if(gameStart === "PLAYING"){
+     for (let k of keys){
+    k.show();
+  }
+    if(dialogueBox.outOfLines === false)
+    dialogueBox.draw();
+    dungeonTile.AddSilverKey(100, 400);
+    dungeonTile.AddGoldKey(250, 200);
+    image(witchImg, 600, 375 , 120, 100);
+    player1.update();
+    player1.show();
+    player1.move();
+  }
+  stroke(70, 60, 100);
+  fill(255, 200, 200)
+  textSize(25);
+  text("Dungeon Keys", 300 , 100)
+  textFont(myFont);
 
-  noFill();
-  stroke(255, 0, 0);
-  rect(player.x, player.y, player.width, player.height);
-  rect(goldKey[0].x, goldKey[0].y, goldKey[0].width, goldKey[0].height)
-  player1.update();
-  player1.show();
-  player1.move();
+
   
 
 
@@ -118,15 +131,8 @@ function draw() {
 
 
   //dialogue
-  if(dialogueBox.outOfLines === false)
-    dialogueBox.draw();
 }
 
-
-//dialogue W7L2(dialogueBox)
-function mousePressed(){
-  dialogueBox.nextLine();
-}
 
 
 
