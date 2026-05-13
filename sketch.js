@@ -1,6 +1,7 @@
 //starting coordinates
 let x, y;
 let keys = [];
+let grid;
 
 let myFont;
 //dungeon
