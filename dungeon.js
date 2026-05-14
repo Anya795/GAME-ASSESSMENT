@@ -1,5 +1,4 @@
-//example code
-
+//PDM2 W7L1 Environment
 class dungeon{
     image;
     constructor(image){
@@ -43,6 +42,7 @@ class dungeon{
     // }
 }
 
+//PDM2 W4L1 GridBasedMazeComplete
 class Wall{
     /** 
      * @param {number} x The x coordinate

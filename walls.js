@@ -1,3 +1,4 @@
+//PDM2 W4L1 GridBasedMazeComplete
 function tryMovePlayer() {
     let newX, newY;
     switch(key){
@@ -20,7 +21,7 @@ function tryMovePlayer() {
                     break;
                     case "RIGHT_ARROW":
                         newX = player1.getX() + player1.getSpeed() + player.getWidth();
-                        if (!grid.isOccupied(newX, player.getY()) && !grid.isOccupied(newX, player.getY() + player.getHeight())) {
+                        if (!dungeonrid.isOccupied(newX, player.getY()) && !dungeon.isOccupied(newX, player.getY() + player.getHeight())) {
                 player.moveRight();
             }
             break;
@@ -47,7 +48,7 @@ function createWall() {
 
 function addWallsToGrid() {
     for (const wall of walls) {
-        grid.addToGrid(wall);
+        dungeon.dungeonImg(wall);
     }
 }
 

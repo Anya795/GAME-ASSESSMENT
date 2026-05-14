@@ -1,12 +1,10 @@
 
 let x, y;
 let keys = [];
-let grid;
 
 let myFont;
 //dungeon
 let dungeonImg;
-let modeButton2;
 
 let player1;
 let dungeonTile;
@@ -14,28 +12,18 @@ let wall = [];
 
 //dialogue
 let dialogueBox;
-let clickCounter = 0;
-// const startGame = "modeButton"
-//movement
-let libaryImg;
-let libaryBackgroundImg;
+
 let spriteImg;
-let bookImg;
 let witchImg;
 
 
 //images
 function preload (){
-  libaryImg = loadImage('/assets/Demo.png');
-  libaryBackgroundImg = loadImage('/assets/Background.png'); //Asset licence: Creative Commons Attribution_ShareAlike v4.0 International. Author: Manu Art. Link: https://manu-art.itch.io/library-asset-pack
-  spriteImg = loadImage('/assets/prototype_character.png'); //Asset licence: You can use these assets in commercial and non-commercial projects. You can edit these assets. You can't redistribute or resell these assets, even if they have been modified. 
-//Author: Snoblin
-//Link:https://snoblin.itch.io/pixel-rpg-free-npc 
-  tilesetImg = loadImage('/assets/Tileset.png'); //Asset licence: Creative Commons Attribution_ShareAlike v4.0 International. Author: Manu Art. Link: https://manu-art.itch.io/library-asset-pack
-  // bookImg = loadImage('/assets/book2.png'); //Asset Licence: nothing. Author: Sleeping Unicorn Studio. Link: https://sleepingunicornstudios.itch.io/book
-  witchImg = loadImage('/assets/witch.png');
-  dungeonImg = loadImage('/assets/Dungeon_Tileset.png');
-  myFont = loadFont('assets/CassandraPersonalUseRegular-3BjG.ttf');
+  spriteImg = loadImage('/assets/prototype_character.png'); 
+//Author: Snoblin, URL:https://snoblin.itch.io/pixel-rpg-free-npc, Date Accessed: 11th April 2026
+  witchImg = loadImage('/assets/witch.png'); //Author: JT, URL: https://jia-tong.itch.io/witches, Date Accessed: 13th April 2026
+  dungeonImg = loadImage('/assets/Dungeon_Tileset.png'); //Author: Pixel_Poem, URL: https://pixel-poem.itch.io/dungeon-assetpuck, Date Accessed: 11th April 2026
+  myFont = loadFont('assets/CassandraPersonalUseRegular-3BjG.ttf'); //Author: Billy Argel Fonts, URL:  //www.fontspace.com/cassandra-font-f29711, Date Accessed: 20th April 2026
 }
 
 function setup() {
@@ -89,12 +77,12 @@ function draw() {
     rect(w.x, w.y, w.w, w.h);
   }
 
-  if(dist(player1.x, player1.y, witchImg.x, witchImg.y) < 30){
+  if(dist(player1.x, player1.y, witchImg.x, witchImg.y) < 30){ //dist = URL: https://p5js.org/reference/p5/dist/. Promoted to use by Gemini 
     gameStart = "MENU";
   }
 
 
-  
+  //PDM2 W7L1 Environment
   //dungeon walls
   //top top
   dungeonTile.AddWall3(100, 0); //left
@@ -116,6 +104,7 @@ function draw() {
   dungeonTile.AddWall5(100,500); //bottom left
   dungeonTile.AddWall2(300,500); //bottom middle
   dungeonTile.AddWall(500,500); //bottom right
+  //My modification ends
 
 
    if(gameStart === "PLAYING"){
@@ -160,12 +149,7 @@ class Character{
       this.w = 30;
       this.h = 40;
       this.speed = 2;
-
-      this.wx = 600;
-      this.wy = 375;
-      this.ww = 0;
-      this.wy = 0;
-      this.wSpeed = 1;
+      this.wSpeed = 1; //speed for witch
 
 }
 
@@ -212,16 +196,6 @@ class Character{
   if(!isOccupied(this.x, nextY)){
     this.y = nextY;
   }
-}
-
-checkCollision(gx, gy){
-  if(gx < this.w.x + this.w.w &&
-    gx + this.w > this.w.x &&
-    gy < this.w.y + this.w.h &&
-    gy + this.h > this.w.y){
-      return true;
-    }
-    return false;
 }
 
   show(){
