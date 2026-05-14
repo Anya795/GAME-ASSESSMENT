@@ -6,6 +6,7 @@ let grid;
 let myFont;
 //dungeon
 let dungeonImg;
+let modeButton2;
 
 let player1;
 let dungeonTile;
@@ -44,6 +45,9 @@ function setup() {
   //dungeon
   dungeonTile = new dungeon(dungeonImg);
   player1 = new Character(100, 100);
+  witchSprite = new Character();
+  witchSprite.x = 600;
+  witchSprite.y = 375;
   wall.push({x: 300, y: 100, w: 200, h: 200});
 
   keys.push(new collection(100, 400, 'silver', spriteImg));
@@ -79,14 +83,20 @@ function mousePressed(){
 function draw() {
   background(0);
 
+  
+
   for( let w of wall){
     rect(w.x, w.y, w.w, w.h);
   }
+
+  if(dist(player1.x, player1.y, witchImg.x, witchImg.y) < 30){
+    gameStart = "MENU";
+  }
+
+
   
   //dungeon walls
-  
   //top top
-
   dungeonTile.AddWall3(100, 0); //left
   dungeonTile.AddWall(300, 0); //middle
   dungeonTile.AddWall(500, 0); //right
@@ -106,24 +116,28 @@ function draw() {
   dungeonTile.AddWall5(100,500); //bottom left
   dungeonTile.AddWall2(300,500); //bottom middle
   dungeonTile.AddWall(500,500); //bottom right
-  
-  //side wall
-  // dungeonTile.AddSideWall(200,300);
 
 
    if(gameStart === "PLAYING"){
      for (let k of keys){
     // k.show();
   }
+  
+    dungeonTile.AddSilverKey(100, 400);
+    dungeonTile.AddGoldKey(250, 200);
+    witchSprite.follow(player1);
+    witchSprite.appear();
     player1.show();
     player1.update();
     console.log(player1.x, player1.y);
-    dungeonTile.AddSilverKey(100, 400);
-    dungeonTile.AddGoldKey(250, 200);
-    image(witchImg, 600, 375 , 120, 100);
     if(dialogueBox.outOfLines === false)
     dialogueBox.draw();
     player1.move();
+
+    let d = dist(player1.x, player1.y, witchSprite.x, witchSprite.y);
+      if(d < 20){
+        endGame()
+      }
     
   }else if (gameStart === "MENU"){
     stroke(70, 60, 100);
@@ -132,40 +146,45 @@ function draw() {
     text("Dungeon Keys", 300 , 100)
     textFont(myFont);
   }
-
-
-
-  
-
-
-  //collection item coordinates
-  //https://p5js.org/examples/games-snake/ - used some of this code
-  translate(0.5, 0.5);
-  // showItem();
-
-
-
-
-  //dialogue
 }
-
-
 
 
 class Character{
   xDirection;
   yDirection;
   speed = 5;
+  size;
     constructor(){
       this.x = 400;
       this.y = 300;
       this.w = 30;
       this.h = 40;
       this.speed = 2;
+
+      this.wx = 600;
+      this.wy = 375;
+      this.ww = 0;
+      this.wy = 0;
+      this.wSpeed = 1;
+
 }
 
   move(){
   }
+
+  follow(target){
+  if(this.x < target.x){
+    this.x += this.wSpeed;
+  } else if (this.x > target.x){
+    this.x -= this.wSpeed;
+  }
+  if(this.y < target.y){
+    this.y += this.wSpeed;
+  } else if (this.y > target.y){
+    this.y -= this.wSpeed;
+  }
+ }
+
 
   update(){
    let nextX = this.x;
@@ -209,6 +228,9 @@ checkCollision(gx, gy){
     image(spriteImg, this.x, this.y, this.w, this.h); //number = width and height of image
   }
 
+  appear(){
+     image(witchImg, this.x, this.y, 90, 100,);
+  }
 
  moveLeft() {
 

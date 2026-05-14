@@ -10,5 +10,16 @@ function startButton(){
 }
 
 function mouseClicked(){
-    modeButton.mouseClicked(startButton)
+    modeButton.mouseClicked(startButton);
+}
+
+function endGame(){
+    if (gameStart = "MENU"){
+        background(0);
+    modeButton.show();
+    }
+    else if (gameStart = "PLAYING"){
+        modeButton.hide();
+    }
+
 }

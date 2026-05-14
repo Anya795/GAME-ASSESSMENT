@@ -30,7 +30,7 @@ function tryMovePlayer() {
 function createWall() {
     wall = [
     new Wall(100, 0, 200, 200), 
-    new Wall (300, 0, 200, 200), //
+    new Wall (300, 0, 200, 200), 
     new Wall (500, 0, 200, 200),
     new Wall (100, 100, 200, 200),
     new Wall (200, 100, 200, 200),
