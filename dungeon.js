@@ -41,6 +41,31 @@ class dungeon{
     // AddSideWall(x, y){
     //     image(this.image, x, y, 300, 40, 0, 60, 90, 16);
     // }
-
-
 }
+
+class Wall{
+    /** 
+     * @param {number} x The x coordinate
+     * @param {number} y The y coordinate
+     * @param {number} w The width
+     * @param {number} h The height
+     */
+    constructor(x ,y, w, h){
+        this.x = x;
+        this.y = y;
+        this.h = h;
+        this.w = w;
+    }
+}
+
+function isOccupied(checkX, checkY){
+        for(let w of wall){
+            if(checkX < w.x + w.w &&
+                checkX + 30 > w.x &&
+                checkY < w.y + w.h &&
+                checkY + 40 > w.y){
+                    return true;
+                }
+        }
+        return false;
+    }

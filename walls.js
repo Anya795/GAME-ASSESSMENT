@@ -27,10 +27,29 @@ function tryMovePlayer() {
     }
 }
 
-function createWalls() {
-    new Wall(100, 0);
-    new Wall (300, 0);
-    new Wall (500, 0);
+function createWall() {
+    wall = [
+    new Wall(100, 0, 200, 200), 
+    new Wall (300, 0, 200, 200), //
+    new Wall (500, 0, 200, 200),
+    new Wall (100, 100, 200, 200),
+    new Wall (200, 100, 200, 200),
+    new Wall (500, 100, 200, 200),
+    new Wall (100, 300, 200, 200),
+    new Wall (300, 300, 200, 200),
+    new Wall (500, 300, 200, 200),
+    new Wall (100, 500, 200, 200),
+    new Wall (300, 500, 200, 200),
+    new Wall (500, 500, 200, 200),
+ ];
+
 }
+
+function addWallsToGrid() {
+    for (const wall of walls) {
+        grid.addToGrid(wall);
+    }
+}
+
 
 

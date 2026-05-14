@@ -1,5 +1,6 @@
-//starting coordinates
+
 let x, y;
+let wall = [];
 let keys = [];
 let grid;
 
@@ -35,7 +36,8 @@ function preload (){
 }
 
 function setup() {
-  createCanvas(800, 600);
+  createCanvas(800, 600)
+  createWall();
 
   //dungeon
   dungeonTile = new dungeon(dungeonImg);
@@ -112,6 +114,7 @@ function draw() {
     dungeonTile.AddGoldKey(250, 200);
     image(witchImg, 600, 375 , 120, 100);
     player1.update();
+    console.log(player1.x, player1.y);
     player1.show();
     player1.move();
     
@@ -156,6 +159,9 @@ class Character{
   }
 
   update(){
+   let nextX = this.x;
+   let nextY = this.y;
+    
     if (keyIsDown (LEFT_ARROW)) {
       this.x -= this.speed;
     this.moveLeft(this.x);
@@ -171,6 +177,10 @@ class Character{
   else if (keyIsDown(DOWN_ARROW)){
     this.y += this.speed;
     this.moveDown(this.y);
+  }
+  if (!isOccupied(nextX, nextY)){
+    this.x = nextX;
+    this.y = nextY;
   }
 }
 
