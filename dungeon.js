@@ -56,6 +56,11 @@ class Wall{
         this.h = h;
         this.w = w;
     }
+
+    AddNewWall(x ,y, w, h){
+        this.AddWall(x,y);
+        Wall.push(new Wall(x, y, w,h));
+    }
 }
 
 function isOccupied(checkX, checkY){

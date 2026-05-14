@@ -1,13 +1,15 @@
 
 let x, y;
-let wall = [];
 let keys = [];
 let grid;
 
 let myFont;
 //dungeon
 let dungeonImg;
+
+let player1;
 let dungeonTile;
+let wall = [];
 
 //dialogue
 let dialogueBox;
@@ -41,7 +43,8 @@ function setup() {
 
   //dungeon
   dungeonTile = new dungeon(dungeonImg);
-  player1 = new Character();
+  player1 = new Character(100, 100);
+  wall.push({x: 300, y: 100, w: 200, h: 200});
 
   keys.push(new collection(100, 400, 'silver', spriteImg));
   keys.push(new collection(250, 200, 'gold', spriteImg));
@@ -75,6 +78,10 @@ function mousePressed(){
 
 function draw() {
   background(0);
+
+  for( let w of wall){
+    rect(w.x, w.y, w.w, w.h);
+  }
   
   //dungeon walls
   
@@ -108,14 +115,14 @@ function draw() {
      for (let k of keys){
     // k.show();
   }
-    if(dialogueBox.outOfLines === false)
-    dialogueBox.draw();
+    player1.show();
+    player1.update();
+    console.log(player1.x, player1.y);
     dungeonTile.AddSilverKey(100, 400);
     dungeonTile.AddGoldKey(250, 200);
     image(witchImg, 600, 375 , 120, 100);
-    player1.update();
-    console.log(player1.x, player1.y);
-    player1.show();
+    if(dialogueBox.outOfLines === false)
+    dialogueBox.draw();
     player1.move();
     
   }else if (gameStart === "MENU"){
@@ -150,8 +157,10 @@ class Character{
   yDirection;
   speed = 5;
     constructor(){
-      this.x = 100;
-      this.y = 100;
+      this.x = 400;
+      this.y = 300;
+      this.w = 30;
+      this.h = 40;
       this.speed = 2;
 }
 
@@ -178,14 +187,26 @@ class Character{
     this.y += this.speed;
     this.moveDown(this.y);
   }
-  if (!isOccupied(nextX, nextY)){
+  if (!isOccupied(nextX, this.y)){
     this.x = nextX;
+  }
+  if(!isOccupied(this.x, nextY)){
     this.y = nextY;
   }
 }
 
+checkCollision(gx, gy){
+  if(gx < this.w.x + this.w.w &&
+    gx + this.w > this.w.x &&
+    gy < this.w.y + this.w.h &&
+    gy + this.h > this.w.y){
+      return true;
+    }
+    return false;
+}
+
   show(){
-    image(spriteImg, this.x, this.y, 30, 40); //number = width and height of image
+    image(spriteImg, this.x, this.y, this.w, this.h); //number = width and height of image
   }
 
 

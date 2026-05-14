@@ -42,7 +42,7 @@ function createWall() {
     new Wall (300, 500, 200, 200),
     new Wall (500, 500, 200, 200),
  ];
-
+ 
 }
 
 function addWallsToGrid() {
