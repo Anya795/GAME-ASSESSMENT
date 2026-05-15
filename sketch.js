@@ -5,10 +5,11 @@ let keys = [];
 let myFont;
 //dungeon
 let dungeonImg;
+let dungeonWall;
 
 let player1;
 let dungeonTile;
-let wall = [];
+let walls = [];
 
 //dialogue
 let dialogueBox;
@@ -28,20 +29,32 @@ function preload (){
 
 function setup() {
   createCanvas(800, 600)
-  createWall();
   dungeonTile = new dungeon(dungeonImg);
+  dungeonWall = new Wall(dungeonImg);
 
 keys.push(new Key(250, 200, dungeonTile.image));
 keys.push(new Key(100, 400, dungeonTile.image));
 keys.push(new Key(500, 400, dungeonTile.image));
 keys.push(new Key(600, 50, dungeonTile.image));
 
+walls.push(new Wall(dungeonWall.image, 100, 0, 200, 200, 3));
+walls.push(new Wall(dungeonWall.image, 300, 0, 200, 200, 1));
+walls.push(new Wall(dungeonWall.image, 500, 0, 200, 200, 1));
+walls.push(new Wall(dungeonWall.image, 100, 100, 200, 200, 1));
+walls.push(new Wall(dungeonWall.image, 300, 100, 200, 200, 2));
+walls.push(new Wall(dungeonWall.image, 500, 100, 200, 200, 3));
+walls.push(new Wall(dungeonWall.image, 100, 300, 200, 200, 5));
+walls.push(new Wall(dungeonWall.image, 300, 300, 200, 200, 1));
+walls.push(new Wall(dungeonWall.image, 500, 300, 200, 200, 5));
+walls.push(new Wall(dungeonWall.image, 100, 500, 200, 200, 2));
+walls.push(new Wall(dungeonWall.image, 300, 500, 200, 200, 1));
+walls.push(new Wall(dungeonWall.image, 500, 500, 200, 200, 1 ));
+
   //dungeon
   player1 = new Character(100, 100);
   witchSprite = new Character();
   witchSprite.x = 600;
   witchSprite.y = 375;
-  wall.push({x: 300, y: 100, w: 200, h: 200});
   
   //button
   modeButton = createButton("START");
@@ -73,11 +86,7 @@ function mousePressed(){
 function draw() {
   background(0);
 
-  
 
-  for( let w of wall){
-    rect(w.x, w.y, w.w, w.h);
-  }
 
   if(dist(player1.x, player1.y, witchImg.x, witchImg.y) < 30){ //dist = URL: https://p5js.org/reference/p5/dist/. Promoted to use by Gemini 
     gameStart = "MENU";
@@ -112,8 +121,17 @@ function draw() {
    if(gameStart === "PLAYING"){
      for (let k of keys){
     k.showCase();
-    if(k.checkingCollision(player1.x, player1.y, player1.h, player1.w))
+    if(k.checkingCollision(player1.x, player1.y, player1.w, player1.h))
     console.log("key collected!)")
+
+    for (let wall of walls){
+      wall.displayNow();
+      // if(wall.collsionDetection(player1.x, player1.y, player1.h, player1.w))
+      //   console.log("Obstacle wall");
+     }
+    // player1.update(walls);
+    // player1.displayNow();
+
      }
     
     witchSprite.follow(player1);
@@ -173,7 +191,7 @@ class Character{
  }
 
 
-  update(){
+  update(walls){
    let nextX = this.x;
    let nextY = this.y;
     
@@ -193,10 +211,10 @@ class Character{
     this.y += this.speed;
     this.moveDown(this.y);
   }
-  if (!isOccupied(nextX, this.y)){
+  if ((nextX, this.y, walls)){
     this.x = nextX;
   }
-  if(!isOccupied(this.x, nextY)){
+  if((this.x, nextY, walls)){
     this.y = nextY;
   }
 }
@@ -208,6 +226,10 @@ class Character{
   appear(){
      image(witchImg, this.x, this.y, 90, 100,);
   }
+
+  displayNow(){
+  image(this.img, this.x, this.y, this.ww, this.wh);
+}
 
  moveLeft() {
 

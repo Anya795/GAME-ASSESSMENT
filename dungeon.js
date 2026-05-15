@@ -39,34 +39,3 @@ class dungeon{
 }
 
 //PDM2 W4L1 GridBasedMazeComplete
-class Wall{
-    /** 
-     * @param {number} x The x coordinate
-     * @param {number} y The y coordinate
-     * @param {number} w The width
-     * @param {number} h The height
-     */
-    constructor(x ,y, w, h){
-        this.x = x;
-        this.y = y;
-        this.h = h;
-        this.w = w;
-    }
-
-    AddNewWall(x ,y, w, h){
-        this.AddWall(x,y);
-        Wall.push(new Wall(x, y, w,h));
-    }
-}
-
-function isOccupied(checkX, checkY){
-        for(let w of wall){
-            if(checkX < w.x + w.w &&
-                checkX + 30 > w.x &&
-                checkY < w.y + w.h &&
-                checkY + 40 > w.y){
-                    return true;
-                }
-        }
-        return false;
-    }
