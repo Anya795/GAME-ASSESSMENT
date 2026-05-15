@@ -1,59 +1,29 @@
-const player = {
-    x: 100,
-    y: 100,
-    width: 30,
-    height: 40,
-}
-
-
-
-class collection{
-  x;
-  y;
-  key; //silver or gold
-    constructor(keyImage, keyType){
-      x = 100;
-      y = 100;
-      this.width = 50;
-      this.height = 50;
-      this.keyType = keyType
-      this.keyImage = keyImage;
-      this.collected = false;
-      
-
-
+class Key {
+    constructor( x, y, img) {
+        this.x = x;
+        this.y = y;
+        this.img = img;
+        this.kw = 50;
+        this.kh = 50;
+        this.collected = false;
     }
 
-    show(){
-        if(!this.collected){
-            if(this.keyImage === 'gold'){
-                image(this.keyImage, this.x, this.y, 50, 50, 144, 144, 16, 16); } else{
-                        image(this.keyImage, this.x, this.y, 50, 50, 128, 128, 16, 16);
-                    }
-                }if(!this.collected && rect(player, this)) {
-                    this.collected = true;
-                    console.log("Key picked up!");
-                }
+    showCase() {
+        if(this.collected === false){
+            image(this.img, this.x, this.y, this.kw, this.kh, 144, 144, 16, 16);
+        }
+    }
+
+    checkingCollision(ax, ay, aw, ah){
+        if(!this.collected &&
+            ax < this.x + this.kw &&
+            ax + aw > this.x &&
+            ay < this.y + this.kh &&
+            ay + ah > this.y){
+                this.collected = true;
+                return true;
             }
-
-            }
-
-
-
-function update() {
-    for (let k of keys){
-        k.rect(player);
+            return false;
     }
 }
 
-function rect(r1, r2){
-    return(
-    r1.x < r2.x + r2.width &&
-    r1.x + r1.width > r2.x &&
-    r1.y < r2.y + r2.height &&
-    r1.y + r1.height > r2.y
-    );
-}
-
-// dungeonTile.AddSilverKey(100, 400);
-//   dungeonTile.AddGoldKey(250, 200);

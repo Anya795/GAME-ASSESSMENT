@@ -29,17 +29,19 @@ function preload (){
 function setup() {
   createCanvas(800, 600)
   createWall();
+  dungeonTile = new dungeon(dungeonImg);
+
+keys.push(new Key(250, 200, dungeonTile.image));
+keys.push(new Key(100, 400, dungeonTile.image));
+keys.push(new Key(500, 400, dungeonTile.image));
+keys.push(new Key(600, 50, dungeonTile.image));
 
   //dungeon
-  dungeonTile = new dungeon(dungeonImg);
   player1 = new Character(100, 100);
   witchSprite = new Character();
   witchSprite.x = 600;
   witchSprite.y = 375;
   wall.push({x: 300, y: 100, w: 200, h: 200});
-
-  keys.push(new collection(100, 400, 'silver', spriteImg));
-  keys.push(new collection(250, 200, 'gold', spriteImg));
   
   //button
   modeButton = createButton("START");
@@ -109,11 +111,11 @@ function draw() {
 
    if(gameStart === "PLAYING"){
      for (let k of keys){
-    // k.show();
-  }
-  
-    dungeonTile.AddSilverKey(100, 400);
-    dungeonTile.AddGoldKey(250, 200);
+    k.showCase();
+    if(k.checkingCollision(player1.x, player1.y, player1.h, player1.w))
+    console.log("key collected!)")
+     }
+    
     witchSprite.follow(player1);
     witchSprite.appear();
     player1.show();
@@ -127,8 +129,8 @@ function draw() {
       if(d < 20){
         endGame()
       }
-    
-  }else if (gameStart === "MENU"){
+     }
+     else if (gameStart === "MENU"){
     stroke(70, 60, 100);
     fill(255, 200, 200)
     textSize(25);
@@ -136,6 +138,7 @@ function draw() {
     textFont(myFont);
   }
 }
+
 
 
 class Character{
@@ -222,4 +225,5 @@ moveDown() {
 
  }
 }
+
 
