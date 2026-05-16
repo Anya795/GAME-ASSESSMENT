@@ -88,7 +88,7 @@ function draw() {
 
 
 
-  if(dist(player1.x, player1.y, witchImg.x, witchImg.y) < 30){ //dist = URL: https://p5js.org/reference/p5/dist/. Promoted to use by Gemini 
+  if(dist(player1.x, player1.y, witchImg.x, witchImg.y) < 30){ //dist = URL: https://p5js.org/reference/p5/dist/. Prompted to use by Gemini 
     gameStart = "MENU";
   }
 
@@ -142,18 +142,45 @@ function draw() {
     if(dialogueBox.outOfLines === false)
     dialogueBox.draw();
     player1.move();
-
     let d = dist(player1.x, player1.y, witchSprite.x, witchSprite.y);
       if(d < 20){
-        endGame()
+
+        endGame();
       }
      }
+
+     if(player1.x > 700 && player1.y > 500){
+      gameStart = "WIN";
+       winScreen();
+     } else if(gameStart === "WIN"){
+     }
      else if (gameStart === "MENU"){
+      dungeonTile.AddWall3(100, 0); //left
+  dungeonTile.AddWall(300, 0); //middle
+  dungeonTile.AddWall(500, 0); //right
+
+  
+  //top
+  dungeonTile.AddWall(100, 100); //top left
+  dungeonTile.AddWall(300, 100); //top middle
+  dungeonTile.AddWall2(500, 100); //top right
+  
+  //middle
+  dungeonTile.AddWall3(100,300); //middle left
+  dungeonTile.AddWall5(300,300); //middle middle(centre)
+  dungeonTile.AddWall(500,300); //middle right
+
+  //bottom
+  dungeonTile.AddWall5(100,500); //bottom left
+  dungeonTile.AddWall2(300,500); //bottom middle
+  dungeonTile.AddWall(500,500); //bottom right
+    textAlign(LEFT, BASELINE);
     stroke(70, 60, 100);
     fill(255, 200, 200)
     textSize(25);
     text("Dungeon Keys", 300 , 100)
     textFont(myFont);
+    endGame();
   }
 }
 

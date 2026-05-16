@@ -37,5 +37,3 @@ class dungeon{
     //     image(this.image, x, y, 300, 40, 0, 60, 90, 16);
     // }
 }
-
-//PDM2 W4L1 GridBasedMazeComplete
