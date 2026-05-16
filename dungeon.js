@@ -9,10 +9,6 @@ class dungeon{
         image(this.image, x, y, 50, 50, 144, 144, 16, 16);
     }
 
-    // AddChest(x, y){
-    //     image(this.image, x, y, 100, 100, 675, 1005, 320, 320);
-    // }
-
     AddWall(x, y){
         image(this.image, x, y, 200, 200, 30, 16, 40, 40);
     }
@@ -32,8 +28,4 @@ class dungeon{
     AddWall5(x, y){
         image(this.image, x, y, 200, 200, 15, 17, 50, 50);
     }
-
-    // AddSideWall(x, y){
-    //     image(this.image, x, y, 300, 40, 0, 60, 90, 16);
-    // }
 }

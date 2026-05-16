@@ -30,29 +30,30 @@ function preload (){
 function setup() {
   createCanvas(800, 600)
   dungeonTile = new dungeon(dungeonImg);
-  dungeonWall = new Wall(dungeonImg);
+  dungeonWall = new Wall(dungeonImg, 0, 0, 1);
 
 keys.push(new Key(250, 200, dungeonTile.image));
 keys.push(new Key(100, 400, dungeonTile.image));
 keys.push(new Key(500, 400, dungeonTile.image));
 keys.push(new Key(600, 50, dungeonTile.image));
 
-walls.push(new Wall(dungeonWall.image, 100, 0, 200, 200, 3));
-walls.push(new Wall(dungeonWall.image, 300, 0, 200, 200, 1));
-walls.push(new Wall(dungeonWall.image, 500, 0, 200, 200, 1));
-walls.push(new Wall(dungeonWall.image, 100, 100, 200, 200, 1));
-walls.push(new Wall(dungeonWall.image, 300, 100, 200, 200, 2));
-walls.push(new Wall(dungeonWall.image, 500, 100, 200, 200, 3));
-walls.push(new Wall(dungeonWall.image, 100, 300, 200, 200, 5));
-walls.push(new Wall(dungeonWall.image, 300, 300, 200, 200, 1));
-walls.push(new Wall(dungeonWall.image, 500, 300, 200, 200, 5));
-walls.push(new Wall(dungeonWall.image, 100, 500, 200, 200, 2));
-walls.push(new Wall(dungeonWall.image, 300, 500, 200, 200, 1));
-walls.push(new Wall(dungeonWall.image, 500, 500, 200, 200, 1 ));
+walls.push(new Wall(dungeonWall.image, 100, 0, 3));
+walls.push(new Wall(dungeonWall.image, 300, 0, 1));
+walls.push(new Wall(dungeonWall.image, 500, 0, 1));
+walls.push(new Wall(dungeonWall.image, 100, 100, 1));
+walls.push(new Wall(dungeonWall.image, 300, 100, 2));
+walls.push(new Wall(dungeonWall.image, 500, 100, 3));
+walls.push(new Wall(dungeonWall.image, 100, 300, 5));
+walls.push(new Wall(dungeonWall.image, 300, 300, 1));
+walls.push(new Wall(dungeonWall.image, 500, 300, 5));
+walls.push(new Wall(dungeonWall.image, 100, 500, 2));
+walls.push(new Wall(dungeonWall.image, 300, 500, 1));
+walls.push(new Wall(dungeonWall.image, 500, 500, 1 ));
 
   //dungeon
-  player1 = new Character(100, 100);
+  player1 = new Character(spriteImg, 100, 100);
   witchSprite = new Character();
+  player1.image = spriteImg;
   witchSprite.x = 600;
   witchSprite.y = 375;
   
@@ -121,18 +122,18 @@ function draw() {
    if(gameStart === "PLAYING"){
      for (let k of keys){
     k.showCase();
-    if(k.checkingCollision(player1.x, player1.y, player1.w, player1.h))
-    console.log("key collected!)")
+    if(k.checkingCollision(player1.x, player1.y, player1.w, player1.h)){
+      console.log("key collected!)")
+    }
+  }
+  // for (let wall of walls){
+  //   wall.displayNow();
+  //   //   console.log("Obstacle wall");
+  //   // }
+  //    player1.update(wall);
+  //    player1.displayNow();
 
-    for (let wall of walls){
-      wall.displayNow();
-      // if(wall.collsionDetection(player1.x, player1.y, player1.h, player1.w))
-      //   console.log("Obstacle wall");
-     }
-    // player1.update(walls);
-    // player1.displayNow();
-
-     }
+  //     }
     
     witchSprite.follow(player1);
     witchSprite.appear();
@@ -144,8 +145,8 @@ function draw() {
     player1.move();
     let d = dist(player1.x, player1.y, witchSprite.x, witchSprite.y);
       if(d < 20){
-
         endGame();
+        gameStart === "MENU";
       }
      }
 
@@ -238,12 +239,13 @@ class Character{
     this.y += this.speed;
     this.moveDown(this.y);
   }
-  if ((nextX, this.y, walls)){
-    this.x = nextX;
-  }
-  if((this.x, nextY, walls)){
-    this.y = nextY;
-  }
+  // for(let wall of walls){
+  //   if(walls.collisionDetection(player1.x, player1.y, wall)){
+  //     this.x = nextX;
+  //     this.y = nextY;
+  //     break;
+  //   }
+  // }
 }
 
   show(){
@@ -255,7 +257,7 @@ class Character{
   }
 
   displayNow(){
-  image(this.img, this.x, this.y, this.ww, this.wh);
+  image(this.image, this.x, this.y, walls);
 }
 
  moveLeft() {
@@ -274,5 +276,6 @@ moveDown() {
 
  }
 }
+
 
 

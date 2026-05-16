@@ -1,8 +1,8 @@
 class Key {
-    constructor(x, y, img) {
+    constructor(x, y, image) {
         this.x = x;
         this.y = y;
-        this.img = img;
+        this.image = image;
         this.kw = 50;
         this.kh = 50;
         this.collected = false;
@@ -10,7 +10,7 @@ class Key {
 
     showCase() {
         if(this.collected === false){
-            image(this.img, this.x, this.y, this.kw, this.kh, 144, 144, 16, 16);
+            image(this.image, this.x, this.y, this.kw, this.kh, 144, 144, 16, 16);
         }
     }
 
