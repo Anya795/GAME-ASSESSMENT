@@ -41,17 +41,17 @@ walls.push(new Wall(dungeonWall.image, 100, 0, 3));
 walls.push(new Wall(dungeonWall.image, 300, 0, 1));
 walls.push(new Wall(dungeonWall.image, 500, 0, 1));
 walls.push(new Wall(dungeonWall.image, 100, 100, 1));
-walls.push(new Wall(dungeonWall.image, 300, 100, 2));
-walls.push(new Wall(dungeonWall.image, 500, 100, 3));
-walls.push(new Wall(dungeonWall.image, 100, 300, 5));
-walls.push(new Wall(dungeonWall.image, 300, 300, 1));
-walls.push(new Wall(dungeonWall.image, 500, 300, 5));
-walls.push(new Wall(dungeonWall.image, 100, 500, 2));
-walls.push(new Wall(dungeonWall.image, 300, 500, 1));
-walls.push(new Wall(dungeonWall.image, 500, 500, 1 ));
+walls.push(new Wall(dungeonWall.image, 300, 100, 1));
+walls.push(new Wall(dungeonWall.image, 500, 100, 2));
+walls.push(new Wall(dungeonWall.image, 100, 300, 3));
+walls.push(new Wall(dungeonWall.image, 300, 300, 5));
+walls.push(new Wall(dungeonWall.image, 500, 300, 1));
+walls.push(new Wall(dungeonWall.image, 100, 500, 5));
+walls.push(new Wall(dungeonWall.image, 300, 500, 2));
+walls.push(new Wall(dungeonWall.image, 500, 500, 1));
 
   //dungeon
-  player1 = new Character(spriteImg, 100, 100);
+  player1 = new Character(spriteImg, 220, 220);
   witchSprite = new Character();
   player1.image = spriteImg;
   witchSprite.x = 600;
@@ -97,48 +97,44 @@ function draw() {
   //PDM2 W7L1 Environment
   //dungeon walls
   //top top
-  dungeonTile.AddWall3(100, 0); //left
-  dungeonTile.AddWall(300, 0); //middle
-  dungeonTile.AddWall(500, 0); //right
+  // dungeonTile.AddWall3(100, 0); //left
+  // dungeonTile.AddWall(300, 0); //middle
+  // dungeonTile.AddWall(500, 0); //right
 
   
-  //top
-  dungeonTile.AddWall(100, 100); //top left
-  dungeonTile.AddWall(300, 100); //top middle
-  dungeonTile.AddWall2(500, 100); //top right
+  // //top
+  // dungeonTile.AddWall(100, 100); //top left
+  // dungeonTile.AddWall(300, 100); //top middle
+  // dungeonTile.AddWall2(500, 100); //top right
   
-  //middle
-  dungeonTile.AddWall3(100,300); //middle left
-  dungeonTile.AddWall5(300,300); //middle middle(centre)
-  dungeonTile.AddWall(500,300); //middle right
+  // //middle
+  // dungeonTile.AddWall3(100,300); //middle left
+  // dungeonTile.AddWall5(300,300); //middle middle(centre)
+  // dungeonTile.AddWall(500,300); //middle right
 
-  //bottom
-  dungeonTile.AddWall5(100,500); //bottom left
-  dungeonTile.AddWall2(300,500); //bottom middle
-  dungeonTile.AddWall(500,500); //bottom right
+  // //bottom
+  // dungeonTile.AddWall5(100,500); //bottom left
+  // dungeonTile.AddWall2(300,500); //bottom middle
+  // dungeonTile.AddWall(500,500); //bottom right
   //My modification ends
 
 
    if(gameStart === "PLAYING"){
-     for (let k of keys){
+    for (let wall of walls){
+      wall.displayNow();
+    }
+     
+    for (let k of keys){
     k.showCase();
     if(k.checkingCollision(player1.x, player1.y, player1.w, player1.h)){
       console.log("key collected!)")
     }
   }
-  // for (let wall of walls){
-  //   wall.displayNow();
-  //   //   console.log("Obstacle wall");
-  //   // }
-  //    player1.update(wall);
-  //    player1.displayNow();
-
-  //     }
     
     witchSprite.follow(player1);
     witchSprite.appear();
     player1.show();
-    player1.update();
+    player1.update(walls);
     console.log(player1.x, player1.y);
     if(dialogueBox.outOfLines === false)
     dialogueBox.draw();
@@ -202,6 +198,15 @@ class Character{
 
 }
 
+checkCollision(ax, ay, aw, ah, bx, by, bw, bh){
+  return(
+  ax < bx + bw &&
+  ax + aw > bx &&
+  ay < by + bh &&
+  ay + ah > by
+  );
+}
+
   move(){
   }
 
@@ -220,33 +225,43 @@ class Character{
 
 
   update(walls){
-   let nextX = this.x;
-   let nextY = this.y;
+    let nextX = this.x;
+    let nextY = this.y
     
-    if (keyIsDown (LEFT_ARROW)) {
-      this.x -= this.speed;
-    this.moveLeft(this.x);
+    if (keyIsDown(LEFT_ARROW)) {
+      nextX -= this.speed;
+    // this.moveLeft(this.x);
   }
   else if (keyIsDown(RIGHT_ARROW)){
-    this.x += this.speed;
-    this.moveRight(this.x);
+    nextX += this.speed;
+    // this.moveRight(this.x);
   }
   else if (keyIsDown(UP_ARROW)){
-    this.y -= this.speed;
-    this.moveUp(this.y);
+    nextY -= this.speed;
+    // this.moveUp(this.y);
   }
   else if (keyIsDown(DOWN_ARROW)){
-    this.y += this.speed;
-    this.moveDown(this.y);
+    nextY += this.speed;
+    // this.moveDown(this.y);
   }
-  // for(let wall of walls){
-  //   if(walls.collisionDetection(player1.x, player1.y, wall)){
-  //     this.x = nextX;
-  //     this.y = nextY;
-  //     break;
-  //   }
-  // }
-}
+  let hittingWall = false;
+  for (let wall of walls){
+    if (wall.collisionDetection(nextX, nextY, this.w, this.h)){
+      console.log('stuck at wall X: ${wall.x}, Y: ${wall.y}. Player Dimensions are W: ${this.w}, H: ${this.h}')
+      hittingWall = true;
+      break;
+    }
+    if (!hittingWall){
+    this.x = nextX;
+    this.y = nextY;
+
+    if(keyIsDown(LEFT_ARROW)) this.moveLeft(this.x);
+    if(keyIsDown(RIGHT_ARROW)) this.moveRight(this.x);
+    if(keyIsDown(UP_ARROW)) this.moveUp(this.y);
+    if(keyIsDown(DOWN_ARROW)) this.moveDown(this.y);
+  }
+  }
+  }
 
   show(){
     image(spriteImg, this.x, this.y, this.w, this.h); //number = width and height of image
