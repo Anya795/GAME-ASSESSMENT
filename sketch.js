@@ -37,8 +37,8 @@ keys.push(new Key(100, 400, dungeonTile.image));
 keys.push(new Key(500, 400, dungeonTile.image));
 keys.push(new Key(600, 50, dungeonTile.image));
 
-walls.push(new Wall(dungeonWall.image, 100, 0, 3));
-walls.push(new Wall(dungeonWall.image, 300, 0, 1));
+walls.push(new Wall(dungeonWall.image, 100, 0, 3)); //top left
+walls.push(new Wall(dungeonWall.image, 300, 0, 1)); //top middle
 walls.push(new Wall(dungeonWall.image, 500, 0, 1));
 walls.push(new Wall(dungeonWall.image, 100, 100, 1));
 walls.push(new Wall(dungeonWall.image, 300, 100, 1));
@@ -131,7 +131,7 @@ function draw() {
     }
   }
     
-    witchSprite.follow(player1);
+    // witchSprite.follow(player1);
     witchSprite.appear();
     player1.show();
     player1.update(walls);
