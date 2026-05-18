@@ -71,20 +71,22 @@ walls.push(new Wall(dungeonWall.image, 500, 500, 1));
 
 
 
-  //dialogue W7L2(dialogueBox)
+  //dialogue W7L2(dialogueBox) I added the following 7 lines
   dialogueBox = new DialogueBox([
     "",
     "",
-    "Hey you! Click me! The little witch with purple hair." ,
-    "Collect items to move onto the next level!" ,
-    "Each level means you collect more items as you go along"
+    "Hey you! Click the screen!(You can click while you move!)" ,
+    "Collect all 4 keys and make it to the bottom right to escape!" ,
+    "Make sure to avoid the purple witch. If it hits you, it's game over! Good luck!"
   ]);
+  //modification ends
 
 }
-//dialogue W7L2(dialogueBox)
+//dialogue W7L2(dialogueBox) I added the following 2/3 lines
 function mousePressed(){
   dialogueBox.nextLine();
 }
+//modification ends
 
 function draw() {
   background(0);
@@ -94,31 +96,6 @@ function draw() {
   if(dist(player1.x, player1.y, witchImg.x, witchImg.y) < 30){ //dist = URL: https://p5js.org/reference/p5/dist/. Prompted to use by Gemini 
     gameStart = "MENU";
   }
-
-
-  //PDM2 W7L1 Environment
-  //dungeon walls
-  //top top
-  // dungeonTile.AddWall3(100, 0); //left
-  // dungeonTile.AddWall(300, 0); //middle
-  // dungeonTile.AddWall(500, 0); //right
-
-  
-  // //top
-  // dungeonTile.AddWall(100, 100); //top left
-  // dungeonTile.AddWall(300, 100); //top middle
-  // dungeonTile.AddWall2(500, 100); //top right
-  
-  // //middle
-  // dungeonTile.AddWall3(100,300); //middle left
-  // dungeonTile.AddWall5(300,300); //middle middle(centre)
-  // dungeonTile.AddWall(500,300); //middle right
-
-  // //bottom
-  // dungeonTile.AddWall5(100,500); //bottom left
-  // dungeonTile.AddWall2(300,500); //bottom middle
-  // dungeonTile.AddWall(500,500); //bottom right
-  //My modification ends
 
 
    if(gameStart === "PLAYING"){
@@ -140,7 +117,6 @@ function draw() {
     console.log(player1.x, player1.y);
     if(dialogueBox.outOfLines === false)
     dialogueBox.draw();
-    // player1.move();
     let d = dist(player1.x, player1.y, witchSprite.x, witchSprite.y);
       if(d < 20){
         endGame();
@@ -154,6 +130,7 @@ function draw() {
      } else if(gameStart === "WIN"){
      }
      else if (gameStart === "MENU"){
+      //PDM2 W7L1 Environment
       dungeonTile.AddWall3(100, 0); //left
   dungeonTile.AddWall(300, 0); //middle
   dungeonTile.AddWall(500, 0); //right
@@ -173,6 +150,7 @@ function draw() {
   dungeonTile.AddWall5(100,500); //bottom left
   dungeonTile.AddWall2(300,500); //bottom middle
   dungeonTile.AddWall(500,500); //bottom right
+  //modification ends
     textAlign(LEFT, BASELINE);
     stroke(70, 60, 100);
     fill(255, 200, 200)
@@ -228,19 +206,14 @@ checkCollision(ax, ay, aw, ah, bx, by, bw, bh){
 
   update(walls){
     let nextX = this.x;
-    // if (keyIsDown(LEFT_ARROW)) {
-      if(keyIsDown(LEFT_ARROW)) nextX -= this.speed;
-    // this.moveLeft(this.x);
-  // }
-  // else if (keyIsDown(RIGHT_ARROW)){
+      
+    if(keyIsDown(LEFT_ARROW)) nextX -= this.speed;
     if(keyIsDown(RIGHT_ARROW)) nextX += this.speed;
-    // this.moveRight(this.x);
-  // }
 
   let hittingWallX = false;
   for (let wall of walls){
     if (wall.collisionDetection(nextX, this.y, this.w, this.h)){
-      console.log(`stuck at wall X: ${wall.x}, Y: ${wall.y}. Player Dimensions are W: ${this.w}, H: ${this.h}`)
+      console.log(`stuck at wall X: ${wall.x}, Y: ${wall.y}. Player Dimensions are W: ${this.w}, H: ${this.h}`) //gemini suggested this line to help with the collision detection
       hittingWallX = true;
       break;
     }
@@ -251,19 +224,14 @@ checkCollision(ax, ay, aw, ah, bx, by, bw, bh){
     }
     
     let nextY = this.y
-    // if (keyIsDown(UP_ARROW)){
     if(keyIsDown(UP_ARROW)) nextY -= this.speed;
-    // this.moveUp(this.y);
-  // }
-  //  if (keyIsDown(DOWN_ARROW)){
     if(keyIsDown(DOWN_ARROW)) nextY += this.speed;
-    // this.moveDown(this.y);
-  //  }
+
 
   let hittingWallY = false;
   for (let wall of walls){
     if (wall.collisionDetection(this.x, nextY, this.w, this.h)){
-      console.log(`stuck at wall X: ${wall.x}, Y: ${wall.y}. Player Dimensions are W: ${this.w}, H: ${this.h}`)
+      console.log(`stuck at wall X: ${wall.x}, Y: ${wall.y}. Player Dimensions are W: ${this.w}, H: ${this.h}`) //gemini suggested this line to help with the collision detection
       hittingWallY = true;
       break;
     }

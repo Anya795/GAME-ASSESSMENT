@@ -14,8 +14,9 @@ class DialogueBox {
 
     fill(255);
     noStroke();
-    textSize(18);
-    text(this.dialogue[this.index], 80, 400);
+    textSize(12);
+    textFont("Arial");
+    text(this.dialogue[this.index], 200, 400);
 }
 
 nextLine(){

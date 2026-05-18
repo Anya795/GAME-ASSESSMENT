@@ -9,9 +9,7 @@ class Wall{
         this.wallType = wallType;
     }
     displayNow(){
-    fill(150, 50, 50);
-    // rect(this.x, this.y, this.ww, this.wh);
-
+    //gemini suggested this format/layout and to give the wall type numbers so it is easier to differentiate them    
     if (this.wallType === 1){
         image(this.image, this.x, this.y, 200, 200, 30, 16, 40, 40);
     }
@@ -28,12 +26,13 @@ class Wall{
         image(this.image, this.x, this.y, 200, 200, 15, 17, 50, 50);
     }
 }
+//modification ends
 
 collisionDetection(newX, newY, newW, newH){
     if (newX + newW <= this.x) return false;
     if (newX >= this.x + this.ww) return false;
     if (newY + newH <= this.y) return false;
-    if(newY >= this.y + 40) return false;
+    if(newY >= this.y + 90) return false;
         return true;
 }
 }
