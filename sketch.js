@@ -1,6 +1,7 @@
 
 let x, y;
 let keys = [];
+let walls = [];
 
 let myFont;
 //dungeon
@@ -9,7 +10,6 @@ let dungeonWall;
 
 let player1;
 let dungeonTile;
-let walls = [];
 
 //dialogue
 let dialogueBox;
@@ -36,6 +36,8 @@ keys.push(new Key(250, 200, dungeonTile.image));
 keys.push(new Key(100, 400, dungeonTile.image));
 keys.push(new Key(500, 400, dungeonTile.image));
 keys.push(new Key(600, 50, dungeonTile.image));
+
+ walls = [];
 
 walls.push(new Wall(dungeonWall.image, 100, 0, 3)); //top left
 walls.push(new Wall(dungeonWall.image, 300, 0, 1)); //top middle
@@ -131,14 +133,14 @@ function draw() {
     }
   }
     
-    // witchSprite.follow(player1);
+    witchSprite.follow(player1);
     witchSprite.appear();
     player1.show();
     player1.update(walls);
     console.log(player1.x, player1.y);
     if(dialogueBox.outOfLines === false)
     dialogueBox.draw();
-    player1.move();
+    // player1.move();
     let d = dist(player1.x, player1.y, witchSprite.x, witchSprite.y);
       if(d < 20){
         endGame();
@@ -189,8 +191,8 @@ class Character{
   speed = 5;
   size;
     constructor(){
-      this.x = 400;
-      this.y = 300;
+      this.x = 700;
+      this.y = 200;
       this.w = 30;
       this.h = 40;
       this.speed = 2;
@@ -226,41 +228,55 @@ checkCollision(ax, ay, aw, ah, bx, by, bw, bh){
 
   update(walls){
     let nextX = this.x;
-    let nextY = this.y
-    
-    if (keyIsDown(LEFT_ARROW)) {
-      nextX -= this.speed;
+    // if (keyIsDown(LEFT_ARROW)) {
+      if(keyIsDown(LEFT_ARROW)) nextX -= this.speed;
     // this.moveLeft(this.x);
-  }
-  else if (keyIsDown(RIGHT_ARROW)){
-    nextX += this.speed;
+  // }
+  // else if (keyIsDown(RIGHT_ARROW)){
+    if(keyIsDown(RIGHT_ARROW)) nextX += this.speed;
     // this.moveRight(this.x);
-  }
-  else if (keyIsDown(UP_ARROW)){
-    nextY -= this.speed;
-    // this.moveUp(this.y);
-  }
-  else if (keyIsDown(DOWN_ARROW)){
-    nextY += this.speed;
-    // this.moveDown(this.y);
-  }
-  let hittingWall = false;
+  // }
+
+  let hittingWallX = false;
   for (let wall of walls){
-    if (wall.collisionDetection(nextX, nextY, this.w, this.h)){
-      console.log('stuck at wall X: ${wall.x}, Y: ${wall.y}. Player Dimensions are W: ${this.w}, H: ${this.h}')
-      hittingWall = true;
+    if (wall.collisionDetection(nextX, this.y, this.w, this.h)){
+      console.log(`stuck at wall X: ${wall.x}, Y: ${wall.y}. Player Dimensions are W: ${this.w}, H: ${this.h}`)
+      hittingWallX = true;
       break;
     }
-    if (!hittingWall){
+  }
+
+    if (!hittingWallX){
     this.x = nextX;
+    }
+    
+    let nextY = this.y
+    // if (keyIsDown(UP_ARROW)){
+    if(keyIsDown(UP_ARROW)) nextY -= this.speed;
+    // this.moveUp(this.y);
+  // }
+  //  if (keyIsDown(DOWN_ARROW)){
+    if(keyIsDown(DOWN_ARROW)) nextY += this.speed;
+    // this.moveDown(this.y);
+  //  }
+
+  let hittingWallY = false;
+  for (let wall of walls){
+    if (wall.collisionDetection(this.x, nextY, this.w, this.h)){
+      console.log(`stuck at wall X: ${wall.x}, Y: ${wall.y}. Player Dimensions are W: ${this.w}, H: ${this.h}`)
+      hittingWallY = true;
+      break;
+    }
+  }
+
+    if (!hittingWallY){
     this.y = nextY;
+    }
 
     if(keyIsDown(LEFT_ARROW)) this.moveLeft(this.x);
     if(keyIsDown(RIGHT_ARROW)) this.moveRight(this.x);
     if(keyIsDown(UP_ARROW)) this.moveUp(this.y);
     if(keyIsDown(DOWN_ARROW)) this.moveDown(this.y);
-  }
-  }
   }
 
   show(){
@@ -288,9 +304,8 @@ moveUp() {
 }
 
 moveDown() {
-
- }
 }
+   }
 
 
 
