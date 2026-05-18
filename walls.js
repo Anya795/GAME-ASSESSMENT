@@ -29,10 +29,10 @@ class Wall{
 //modification ends
 
 collisionDetection(newX, newY, newW, newH){
-    if (newX + newW <= this.x) return false;
+    if (newX + newW <= this.x) return false; //syntax fixed by gemnini
     if (newX >= this.x + this.ww) return false;
     if (newY + newH <= this.y) return false;
-    if(newY >= this.y + 90) return false;
+    if(newY >= this.y + this.wh) return false;
         return true;
 }
 }

@@ -42,8 +42,8 @@ function keyPressed(){
             console.log("R is clicked");
             gameStart = "MENU";
 
-            player1.x = 400;
-            player1.y = 300;
+            player1.x = 700;
+            player1.y = 200;
         }
     }
 }

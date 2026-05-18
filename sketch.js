@@ -39,8 +39,8 @@ keys.push(new Key(600, 50, dungeonTile.image));
 
  walls = [];
 
-walls.push(new Wall(dungeonWall.image, 100, 0, 3)); //top left
-walls.push(new Wall(dungeonWall.image, 300, 0, 1)); //top middle
+walls.push(new Wall(dungeonWall.image, 100, 0, 3));
+walls.push(new Wall(dungeonWall.image, 300, 0, 1));
 walls.push(new Wall(dungeonWall.image, 500, 0, 1));
 walls.push(new Wall(dungeonWall.image, 100, 100, 1));
 walls.push(new Wall(dungeonWall.image, 300, 100, 1));
@@ -203,48 +203,24 @@ checkCollision(ax, ay, aw, ah, bx, by, bw, bh){
   }
  }
 
-
+//collision detection (gemini suggested formatting the function like this so the collision detection actually works + helped with syntax errors)
   update(walls){
-    let nextX = this.x;
-      
-    if(keyIsDown(LEFT_ARROW)) nextX -= this.speed;
-    if(keyIsDown(RIGHT_ARROW)) nextX += this.speed;
-
-  let hittingWallX = false;
-  for (let wall of walls){
-    if (wall.collisionDetection(nextX, this.y, this.w, this.h)){
-      console.log(`stuck at wall X: ${wall.x}, Y: ${wall.y}. Player Dimensions are W: ${this.w}, H: ${this.h}`) //gemini suggested this line to help with the collision detection
-      hittingWallX = true;
-      break;
-    }
-  }
-
-    if (!hittingWallX){
-    this.x = nextX;
-    }
     
-    let nextY = this.y
-    if(keyIsDown(UP_ARROW)) nextY -= this.speed;
-    if(keyIsDown(DOWN_ARROW)) nextY += this.speed;
-
-
-  let hittingWallY = false;
-  for (let wall of walls){
-    if (wall.collisionDetection(this.x, nextY, this.w, this.h)){
-      console.log(`stuck at wall X: ${wall.x}, Y: ${wall.y}. Player Dimensions are W: ${this.w}, H: ${this.h}`) //gemini suggested this line to help with the collision detection
-      hittingWallY = true;
+    if(keyIsDown(LEFT_ARROW)) this.x -= this.speed;
+    if(keyIsDown(RIGHT_ARROW)) this.x += this.speed;
+    if(keyIsDown(UP_ARROW)) this.y -= this.speed;
+    if(keyIsDown(DOWN_ARROW)) this.y += this.speed;
+  
+    for (let wall of walls){
+    if (wall.collisionDetection(this.x, this.y, this.w, this.h)){
+      console.log(`stuck at wall X: ${wall.x}, Y: ${wall.y}. Player Dimensions are W: ${this.w}, H: ${this.h}`) //gemini suggested this line to help with the collision detection for positions, width and height
+    if(keyIsDown(LEFT_ARROW)) this.x += this.speed;
+    if(keyIsDown(RIGHT_ARROW)) this.x -= this.speed;
+    if(keyIsDown(UP_ARROW)) this.y += this.speed;
+    if(keyIsDown(DOWN_ARROW)) this.y -= this.speed;
       break;
     }
   }
-
-    if (!hittingWallY){
-    this.y = nextY;
-    }
-
-    if(keyIsDown(LEFT_ARROW)) this.moveLeft(this.x);
-    if(keyIsDown(RIGHT_ARROW)) this.moveRight(this.x);
-    if(keyIsDown(UP_ARROW)) this.moveUp(this.y);
-    if(keyIsDown(DOWN_ARROW)) this.moveDown(this.y);
   }
 
   show(){
